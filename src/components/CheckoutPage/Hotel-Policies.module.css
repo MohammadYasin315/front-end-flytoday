@@ -1,0 +1,82 @@
+.hotelPoliciesCard {
+    background-color: white;
+    width: 100%;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.mainTitle {
+    color: rgb(20, 29, 56);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1rem;
+    text-align: right;
+    padding-bottom: 0.8rem;
+}
+
+.timeGrid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.timeItem {
+    grid-column: span 4 / span 4;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: right;
+}
+
+.timeLabel {
+    font-weight: 700;
+    font-size: 1rem;
+    color: rgb(20, 29, 56);
+    white-space: nowrap;
+    text-align: right;
+}
+
+.timeValue {
+    align-self: flex-start;
+    white-space: nowrap;
+    text-align: right;
+    color: #000;
+}
+
+.instructionsSection {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.instructionBlock {
+    text-align: right;
+}
+
+.instructionTitle {
+    font-weight: 700;
+    font-size: 1rem;
+    color: rgb(20, 29, 56);
+    margin-bottom: 0.75rem;
+    text-align: right;
+}
+
+.instructionContent {
+    white-space: pre-line;
+    font-size: 0.769rem;
+    font-weight: 600;
+    line-height: 2;
+    text-align: right;
+    color: #000;
+}
+
+.instructionContent ul {
+    padding-right: 1rem;
+}

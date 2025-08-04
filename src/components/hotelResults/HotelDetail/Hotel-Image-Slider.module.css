@@ -1,0 +1,322 @@
+/* Main container styles */
+
+.mainContainer {
+    width: 100%;
+    z-index: 1000;
+    margin-bottom: 25px;
+}
+
+.linkToDefault {
+    color: #202020;
+    text-decoration: none;
+}
+
+.cardBase {
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    flex-direction: row-reverse;
+    transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.cardBase:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.featuredBorder {
+    border-width: 2px;
+    border-color: #a3d7fc;
+}
+
+.normalBorder {
+    border-color: #d1d5db;
+}
+
+
+/* Text section styles */
+
+.textSection {
+    width: 66.666667%;
+    padding: 1rem;
+}
+
+.hotelTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.hotelAddress {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+}
+
+.starRating {
+    display: flex;
+    align-items: center;
+    color: #eab308;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.hotelDescription {
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+
+/* Image section styles */
+
+.imageSection {
+    padding: 0;
+    position: relative;
+    width: 33.333333%;
+}
+
+.sliderWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.sliderContainer {
+    position: relative;
+    overflow: hidden;
+    height: 230px;
+}
+
+.sliderInner {
+    position: relative;
+    height: 100%;
+}
+
+.imageContainer {
+    user-select: none;
+    height: 100%;
+}
+
+.imageWrapper {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.hotelImage {
+    max-width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Tooltip wrapper */
+
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Bookmark button styles */
+
+.bookmarkButtonWrapper {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #eff0f6;
+    box-shadow: 0 0 8px rgba(0, 93, 253, 0.12);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.bookmarkButtonBase {
+    z-index: 2;
+    background-color: transparent;
+    border-width: 0;
+    font-size: 1.5rem;
+}
+
+.bookmarkButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heartIcon {
+    font-size: 1.5rem;
+    color: rgb(202, 46, 43);
+    transition: fill 0.2s ease-in-out;
+}
+
+.bookmarkTooltip {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #041d53;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    z-index: 11;
+}
+
+.bookmarkTooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background-color: #041d53;
+    z-index: -1;
+}
+
+.bookmarkButtonWrapper:hover .bookmarkTooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Navigation styles */
+
+.navigationOverlay {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 5;
+}
+
+.navButton {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 11, 38, 0.58);
+    box-shadow: 0 0 8px rgba(142, 152, 169, 0.12);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.navButtonSpacing {
+    margin: 0 0.75rem;
+    z-index: 2;
+}
+
+.navButton:hover {
+    opacity: 0.8;
+}
+
+.navIcon {
+    font-size: 2.5rem;
+    color: white;
+}
+
+
+/* Counter and ad tag styles */
+
+.imageCounter {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    z-index: 5;
+}
+
+.adTag {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    z-index: 5;
+}
+
+
+/* Loading animation styles */
+
+.loadingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+}
+
+.loadingDots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: dotPulse 1.5s infinite;
+}
+
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes dotPulse {
+    0%,
+    60%,
+    100% {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+    }
+    30% {
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.2);
+    }
+}

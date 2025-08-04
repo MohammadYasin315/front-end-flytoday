@@ -1,0 +1,29 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    direction: rtl;
+}
+
+.mainLayout {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: 0.1rem;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.filtersWrapper {
+    width: 276px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    text-align: right;
+    direction: rtl;
+}

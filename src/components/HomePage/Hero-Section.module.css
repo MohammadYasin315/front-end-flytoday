@@ -1,0 +1,20 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: right;
+    direction: rtl;
+}
+
+.section {
+    padding-bottom: 0.1rem;
+    padding-top: 4rem;
+}
+
+.mainHeading {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgb(51 65 85);
+    text-align: justify !important;
+    margin-bottom: 0;
+}

@@ -1,0 +1,97 @@
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.modalOverlay {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 462px;
+    width: 100%;
+    margin: 2rem;
+    padding: 2rem;
+}
+
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.iconContainer {
+    width: 4rem;
+    height: 4rem;
+    background-color: #e0f2fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.iconImage {
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.description {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 350px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.button {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.primaryButton {
+    background-color: #3662db;
+    color: white;
+}
+
+.primaryButton:hover {
+    background-color: #0734af;
+}
+
+.secondaryButton {
+    background-color: #ffffff;
+    color: #3662db;
+    border: 1px solid #e2e8f0;
+}
+
+.secondaryButton:hover {
+    background-color: #d7e8f1;
+}

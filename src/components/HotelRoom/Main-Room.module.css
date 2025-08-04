@@ -1,0 +1,17 @@
+.container {
+    z-index: 1000;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    direction: rtl;
+}
+
+.gridWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}

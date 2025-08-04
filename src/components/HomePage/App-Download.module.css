@@ -1,0 +1,281 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 81px;
+    margin-right: 81px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.downloadSection {
+    border: 1px solid #e1e1e1;
+    border-radius: 0.75rem;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+}
+
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.textSection {
+    margin: auto 0;
+}
+
+.title {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    white-space: nowrap;
+    text-align: right;
+    color: #0f1729;
+    margin-bottom: 0.75rem;
+}
+
+.subtitle {
+    text-align: right;
+    color: #334155;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.downloadButtonsWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.downloadButtons {
+    margin: auto 0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-bottom: 0.8rem;
+}
+
+.buttonRowCenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.downloadButton {
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.875rem;
+}
+
+.downloadButtonStart {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.875rem;
+}
+
+.downloadButtonCenter {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.downloadButton img,
+.downloadButtonStart img,
+.downloadButtonCenter img {
+    border-radius: 0.5rem;
+    width: 183px;
+    height: 48px;
+}
+
+.formSection {
+    max-width: 30rem;
+    width: 100%;
+    margin: auto 0;
+    padding-bottom: 1.5rem;
+}
+
+.form {
+    width: 100%;
+}
+
+.formRow {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.inputWrapper {
+    position: relative;
+    flex: 1;
+    width: 30rem;
+}
+
+.inputField {
+    position: relative;
+    width: 100%;
+}
+
+.inputLabelWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputLabel {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #5f5f5f;
+    background-color: transparent;
+    z-index: 1;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.inputLabelFloating {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: 12px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}
+
+
+/* .inputLabelActive {
+    color: #3662db;
+}
+
+.inputLabelError {
+    color: #ef4444;
+} */
+
+.input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d7d4d2;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #343b53;
+    background-color: #fff;
+    outline: none;
+    direction: ltr;
+    transition: border-color 0.2s ease;
+}
+
+.input:focus {
+    border-color: #3662db;
+}
+
+.inputError {
+    border-color: #ef4444 !important;
+}
+
+.inputValid {
+    border-color: #3662db;
+}
+
+.errorMessage {
+    color: #dc2626;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    text-align: right;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.submitButton {
+    height: 48px;
+    font-size: 0.875rem;
+    border: 0;
+    font-weight: 600;
+    width: 9rem;
+    color: #fafafa;
+    background-color: #3662db;
+    border: 1px solid #3662db;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    box-shadow: none;
+    outline: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.submitButton:hover {
+    background-color: #2851c7;
+    border-color: #2851c7;
+}
+
+.qrSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 203px;
+    height: 227px;
+    right: -4px;
+}
+
+.qrWrapper {
+    width: 203px;
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.25rem;
+}
+
+.qrCode {
+    height: 13rem;
+    margin-bottom: 0.5rem;
+}
+
+.qrText {
+    color: #343b53;
+    text-align: center;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    padding: 0 1rem;
+}
+
+.appImageSection {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    right: -4px;
+}
+
+.appImage {
+    object-fit: contain;
+    width: 388px;
+    height: 429px;
+}

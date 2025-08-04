@@ -1,0 +1,440 @@
+/* Base Styles */
+
+.body {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+
+/* Notification Area */
+
+.notificationArea {
+    position: fixed;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+
+/* Header Wrapper */
+
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    background: white;
+    border-bottom: 1px solid #e1e1e1;
+    display: block;
+    direction: rtl;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.headerHidden {
+    transform: translateY(-100%);
+}
+
+
+/* Spacer for layout */
+
+.spacer {
+    height: 82px;
+    display: block;
+}
+
+
+/* Header */
+
+.header {
+    background: white;
+}
+
+
+/* Container */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Left Section */
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    /* Changed back from 4rem */
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0.5rem;
+    text-decoration: none;
+    color: #666;
+    min-width: 175px;
+}
+
+.logoImage {
+    width: auto;
+    max-width: 13rem;
+    height: auto;
+}
+
+
+/* Navigation */
+
+.navigation {
+    display: flex;
+}
+
+.navItems {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #666;
+    position: relative;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.navLink.active {
+    border-bottom-color: #3662db;
+}
+
+.navLink.active .navButton {
+    color: #062040;
+}
+
+.navLink:hover .navButton {
+    color: #3662db;
+}
+
+.navButton {
+    background: white;
+    border: none;
+    padding: 0 1rem;
+    line-height: 80px;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navButton:hover {
+    color: #3662db;
+}
+
+
+/* Dropdown */
+
+@keyframes growFromRightCorner {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdownButton {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    color: #062040;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+
+.dropdownButton:hover {
+    color: #062040;
+}
+
+.dropdownIcon {
+    width: 15px;
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.dropdown.open .dropdownIcon {
+    transform: rotate(180deg);
+}
+
+.dropdownMenu {
+    animation: growFromRightCorner 0.18s ease-out, fadeIn 0.06s ease-out 0.06s;
+    animation-fill-mode: forwards;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: top right;
+    user-select: none;
+    position: absolute;
+    /* top: 100%; */
+    /* right: 0; */
+    /* margin-top: 1px; */
+    background: white;
+    border-radius: 0.50rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1000;
+    font-size: 0.9rem;
+}
+
+.dropdownContent {
+    padding: 0.5rem 0;
+}
+
+.dropdownItem {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+    background-color: #e8f6fa;
+}
+
+.dropdownLink {
+    padding: 0.5rem 0.75rem;
+    color: #141414;
+    min-width: 100%;
+}
+
+
+/* Right Section */
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 1rem;
+}
+
+
+/* App Button */
+
+.appButton {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    padding: 8px 8px 8px 8px;
+    margin: 0 8px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.appButton:hover {
+    border-color: #bbb;
+    background-color: #f9f9f9;
+}
+
+.appIcon {
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%233662db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='2' width='14' height='20' rx='2' ry='2'/%3E%3Cline x1='12' y1='18' x2='12.01' y2='18'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.appIcon::before {
+    content: "";
+}
+
+.appText {
+    color: #000000;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding-bottom: 0.125rem;
+}
+
+
+/* Auth Button */
+
+.authButton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.authButton:hover {
+    border-color: #bbb;
+    background-color: #f9f9f9;
+}
+
+.profileIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin-right: 0px;
+}
+
+.profileIconSvg {
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profileIconSvg::before {
+    content: "";
+}
+
+.authText {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2c3e50;
+}
+
+.authLabel {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.authDivider {
+    display: inline-block;
+    width: 1px;
+    height: 30px;
+    background-color: #e0e0e0;
+}
+
+
+/* Add register accommodation button */
+
+.registerButton {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    padding: 10px 7px;
+    margin: 0 8px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #111111;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.registerButton:hover {
+    border-color: #bbb;
+    background-color: #f9f9f9;
+}
+
+.registerIcon {
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233662db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9,22 9,12 15,12 15,22'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.authContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.authButtons {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.logoutButton {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #666;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.logoutButton:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.phoneBox {
+    background: white;
+    padding-top: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    color: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    transition: all 0.3s ease;
+}

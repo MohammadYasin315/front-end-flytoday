@@ -1,0 +1,86 @@
+.stepsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stepsWrapper {
+    width: 100%;
+}
+
+.stepsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    user-select: none;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #001a4b;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    direction: rtl;
+    text-align: right;
+    padding-bottom: 17px;
+}
+
+.stepItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.stepContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stepContentActive {
+    color: #3662db;
+    font-weight: 700;
+}
+
+.stepContentInactive {
+    color: #cbd5e1;
+}
+
+.stepIcon {
+    font-size: 20px;
+    line-height: 28px;
+    width: 20px;
+    height: 20px;
+}
+
+.stepLabel {
+    margin-top: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.stepConnector {
+    flex: 1;
+    height: 1px;
+    border-top: 1px solid #cbd5e1;
+    margin: 0 8px;
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.stepConnectorActive {
+    border-top: 1px solid #3662db;
+}
+
+.stepsRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    direction: rtl;
+    text-align: right;
+}

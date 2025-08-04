@@ -1,0 +1,100 @@
+.spacer {
+    height: 6rem;
+    margin-bottom: 0.5rem;
+}
+
+.searchHeader {
+    position: fixed;
+    z-index: 1020;
+    top: 83px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.12);
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    transform: translateY(0);
+}
+
+.searchHeaderTop {
+    top: 0;
+    transform: translateY(0);
+    /* box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.15); */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 42px;
+}
+
+.searchContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    direction: ltr;
+}
+
+.searchInfo {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 1;
+    direction: rtl;
+    justify-content: flex-start;
+    margin-left: auto;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: rgb(20, 29, 56);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+}
+
+.text {
+    flex-shrink: 0;
+}
+
+.modifyButton {
+    background-color: #3662db;
+    border: 1px solid #3662db;
+    color: white;
+    font-weight: 700;
+    border-radius: 2rem;
+    width: 100px;
+    height: 3rem;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    order: -1;
+}
+
+.modifyButton:hover {
+    background-color: #2851c7;
+    border-color: #2851c7;
+}
+
+.buttonText {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    margin: 0;
+    white-space: nowrap;
+}

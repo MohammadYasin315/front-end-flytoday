@@ -1,0 +1,342 @@
+.container {
+    padding: 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    /* background-color: white; */
+    /* border-radius: 0 1rem 1rem 0; */
+    direction: rtl;
+    text-align: right;
+}
+
+
+/* Header Section - All in one line */
+
+.header {
+    margin-bottom: 0.25rem;
+}
+
+.titleRow {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    justify-content: flex-start;
+    text-align: right;
+}
+
+.hotelName {
+    text-align: right;
+    font-size: 1.1rem;
+    line-height: 1.25rem;
+    color: #141d38;
+    text-decoration: none;
+}
+
+.hotelBadge {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #f8f5f4;
+    color: #343638;
+    margin-inline-start: 0;
+    margin-inline-end: 0.25rem;
+    border-radius: 0.75rem;
+    font-weight: 400;
+    transform: scale(0.91);
+    line-height: 1;
+}
+
+.starRating {
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+.starIcon {
+    width: 1rem;
+    height: 1rem;
+    line-height: 1;
+}
+
+.starFilled {
+    color: #eab308;
+    fill: currentColor;
+}
+
+.starEmpty {
+    color: #64748b;
+    fill: none;
+}
+
+
+/* Address Section */
+
+.addressSection {
+    white-space: normal;
+    width: 100%;
+    text-align: right;
+    direction: rtl;
+}
+
+.addressContent {
+    width: 100%;
+    text-align: right;
+}
+
+.address {
+    display: inline;
+    font-size: 0.70rem;
+    line-height: 1rem;
+    color: #202020;
+    font-weight: 500;
+    text-align: right;
+}
+
+.mapButton {
+    color: #3662db;
+    font-weight: 700;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    padding: 0;
+}
+
+
+/* Room Type Section */
+
+.roomTypeSection {
+    direction: rtl;
+    display: inline;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.895rem;
+    font-weight: 700;
+    /* gap: 1rem; */
+    text-align: right;
+}
+
+.roomType {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.breakfastBadge {
+    color: #0d7066;
+}
+
+
+/* Main Content Section - RTL Layout */
+
+.mainContent {
+    display: flex;
+    /* flex-direction: column; */
+    flex: 1;
+    margin-top: 0.5rem;
+    direction: rtl;
+}
+
+
+/* Right Section - Amenities and Rating */
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    text-align: right;
+    direction: rtl;
+    margin-bottom: 0rem;
+}
+
+.amenitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 0.90rem;
+    align-items: center;
+    text-align: right;
+}
+
+.amenityItem {
+    padding: 0;
+    cursor: default;
+}
+
+.amenityContent {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #343b53;
+    cursor: pointer;
+    text-align: right;
+    direction: rtl;
+}
+
+.amenityIcon {
+    width: 1rem;
+    height: 1rem;
+    color: #1a1c24;
+}
+
+.amenityText {
+    font-size: 0.75rem;
+    transform: scale(0.91);
+    line-height: 1;
+    font-weight: 400;
+    text-align: right;
+}
+
+.ratingRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    /* margin-bottom: 0.5rem; */
+    text-align: right;
+}
+
+.ratingDescription {
+    font-weight: 700;
+    font-size: 0.70rem;
+    line-height: 1rem;
+    white-space: nowrap;
+    margin-right: 0.25rem;
+    color: #141d38;
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    direction: ltr;
+}
+
+.ratingBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    background-color: #0d7066;
+    color: white;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    padding: 0.375rem;
+    white-space: nowrap;
+}
+
+.ratingScore {
+    direction: ltr;
+}
+
+
+/* Left Section - Price info and Button */
+
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    /* width: 100%; */
+    justify-content: flex-end;
+    text-align: left;
+    direction: ltr;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.remainingRooms {
+    font-size: 0.625rem;
+    line-height: 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 0.25rem;
+    color: #dc2626;
+    text-align: center;
+}
+
+.priceLabel {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-align: left;
+    color: #343b53;
+    padding: 0.25rem 0;
+    /* align-self: flex-start; */
+    text-align: center;
+}
+
+.priceAmount {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    direction: rtl;
+    /* align-self: flex-start; */
+    text-align: center;
+}
+
+.priceValue {
+    color: #0d7066;
+    font-weight: 700;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+.currency {
+    /* margin-inline-start: 0.12rem; */
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.showRoomsButton {
+    padding: 0.25rem;
+    font-weight: 800;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    height: 34px;
+    width: 175px;
+    background-color: #3662db;
+    border: 1px solid #3662db;
+    color: #fff;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    box-shadow: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.showRoomsButton:hover {
+    background-color: #1342cf;
+    border-color: #1342cf;
+}
+
+.showRoomsButton:focus {
+    outline: 2px solid #1342cf;
+    outline-offset: 2px;
+}

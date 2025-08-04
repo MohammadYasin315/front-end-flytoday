@@ -1,0 +1,326 @@
+.container {
+    direction: rtl;
+}
+
+.description {
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.descriptions {
+    color: #0f172a;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.fieldsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.fieldsGridMd {
+    grid-template-columns: 252px 252px;
+}
+
+.fieldWrapper {
+    position: relative;
+    flex: 1;
+}
+
+.inputField {
+    width: 100%;
+    height: 48px;
+    padding: 0.25rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid #727483;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: border-color 0.2s ease;
+}
+
+.inputFieldFocused {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+.inputFieldError {
+    border-color: #ca2e2b;
+}
+
+.inputFieldValid {
+    border-color: #3b82f6;
+}
+
+.labelWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.floatingLabel {
+    position: absolute;
+    right: 0.75rem;
+    color: #343b53;
+    font-size: 1rem;
+    line-height: 1;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    pointer-events: none;
+    transform-origin: right center;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    padding: 0 0.25rem;
+    z-index: 1;
+}
+
+.floatingLabelFloated {
+    transform: translateY(-50%) translateY(-1.4rem) scale(0.75);
+    color: #343b53;
+}
+
+.textInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    font-size: 0.9rem;
+    color: #141d38;
+    direction: rtl;
+    text-align: right;
+    padding-top: 5px;
+}
+
+.errorMessage {
+    color: #ca2e2b;
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-top: 0.25rem;
+    text-align: right;
+}
+
+.checkboxSection {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.checkboxLabel {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    direction: rtl;
+    gap: 0.5rem;
+}
+
+.checkboxLabel:hover .customCheckbox {
+    border-color: #3b82f6;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    order: -1;
+}
+
+.hiddenCheckbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.customCheckbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #727483;
+    background: #fff;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customCheckboxChecked {
+    border-color: #3b82f6;
+    background-color: #3b82f6;
+}
+
+.checkboxIcon {
+    width: 20px;
+    height: 20px;
+    stroke: #fff;
+    stroke-width: 3px;
+    fill: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.checkboxIconVisible {
+    opacity: 1;
+}
+
+.checkboxText {
+    font-size: 0.875rem;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.selectWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.selectWrapperMd {
+    grid-template-columns: 1fr 1fr;
+}
+
+.selectField {
+    flex: 1;
+    max-width: 252px;
+    position: relative;
+    direction: rtl;
+}
+
+.selectButton {
+    width: 100%;
+    height: 48px;
+    padding: 0.5rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid #727483;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    direction: rtl;
+    text-align: right;
+    position: relative;
+}
+
+.selectButtonDisabled {
+    border-color: #d7d4d2;
+    pointer-events: none;
+    user-select: none;
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+}
+
+.selectButtonEnabled {
+    border-color: #3b82f6;
+}
+
+.selectLabel {
+    color: #343b53;
+    font-size: 1rem;
+    line-height: 1;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    text-align: right;
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    padding: 0 0.25rem;
+    z-index: 1;
+}
+
+.selectLabelDisabled {
+    background-color: #f9f9f9;
+    color: #868686;
+}
+
+.selectLabelFloated {
+    transform: translateY(-50%) translateY(-1.4rem) scale(0.75);
+}
+
+.selectValue {
+    font-size: 1rem;
+    color: #141d38;
+    direction: rtl;
+    text-align: right;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+}
+
+.selectIcon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #777674;
+    transition: transform 0.2s ease;
+}
+
+.selectIconDisabled {
+    color: #d4d2d0;
+}
+
+.selectIconRotated {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: 54px;
+    right: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 0.75rem rgba(12, 14, 28, 0.08);
+    z-index: 1070;
+    max-height: 19rem;
+    overflow: auto;
+    padding: 0.5rem 0;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.15s ease;
+    direction: rtl;
+}
+
+.dropdownVisible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.dropdownOption {
+    color: #343b53;
+    padding: 0.5rem 0.75rem;
+    min-height: 2.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    transition: background-color 0.15s ease;
+    text-align: right;
+    direction: rtl;
+}
+
+.dropdownOption:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown:not(.dropdownVisible) .dropdownOption {
+    cursor: default;
+    pointer-events: none;
+}

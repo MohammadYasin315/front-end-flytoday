@@ -1,0 +1,211 @@
+.dropdown {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
+    width: 20rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 0.75rem rgba(12, 14, 28, 0.08);
+    z-index: 1093;
+    overflow: hidden;
+    animation: growFromRightCorner 0.18s ease-out, fadeIn 0.06s ease-out 0.06s;
+    animation-fill-mode: forwards;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: top right;
+    user-select: none;
+}
+
+@keyframes growFromRightCorner {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.content {
+    padding: 1rem 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.roomSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.roomHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.roomTitle {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #141d38;
+}
+
+.guestRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.5rem;
+}
+
+.guestInfo {
+    display: flex;
+    flex-direction: column;
+    color: #343b53;
+}
+
+.guestType {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.guestAge {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.quantityPicker {
+    width: 6.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantityButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #727483;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.75rem;
+    background: transparent;
+    color: #727483;
+    transition: all 0.15s ease;
+}
+
+.quantityButton:hover:not(:disabled) {
+    background-color: rgba(54, 98, 219, 0.1);
+    border-color: #3662db;
+}
+
+.quantityButton:active:not(:disabled) {
+    border-color: #3662db;
+    border-width: 4px;
+    background-color: transparent;
+}
+
+.quantityButtonDisabled {
+    color: #d7d4d2;
+    border-color: #d7d4d2;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.quantityValue {
+    color: #141d38;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.actions {
+    margin: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addRoomButton {
+    padding: 0.25rem 1rem;
+    height: 36px;
+    font-size: 0.875rem;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    color: #3662db;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: background-color 0.2s ease;
+}
+
+.addRoomButton:hover {
+    background-color: rgba(54, 98, 219, 0.1);
+}
+
+.confirmButton {
+    padding: 0.25rem 1rem;
+    height: 36px;
+    font-size: 0.875rem;
+    background-color: #3662db;
+    border: 1px solid #3662db;
+    color: #fafafa;
+    border-radius: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.confirmButton:hover {
+    background-color: #2851c7;
+    border-color: #2851c7;
+}
+
+
+/* ✅ Delete room button styling */
+
+.deleteRoomButton {
+    padding: 0;
+    background: rgba(0, 0, 0, 0);
+    font-weight: 800;
+    color: #ca2e2b;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    height: auto;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.deleteRoomButton:hover {
+    opacity: 0.8;
+}
+
+.addRoomButtonDisabled {
+    color: #93b8c2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.addRoomButtonDisabled:hover {
+    background-color: transparent;
+    cursor: not-allowed;
+}

@@ -1,0 +1,195 @@
+.mapSection {
+    position: relative;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.mapSection:hover {
+    opacity: 0.95;
+}
+
+.mapImage {
+    height: 188px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.mapSection:hover .mapImage {
+    transform: scale(1.10);
+}
+
+.mapLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3662db;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 1000;
+    padding: 3px 0;
+    margin: 0;
+}
+
+.activeFilters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 12px;
+}
+
+.resultCount {
+    color: #001a4b;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.clearFilters {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 800;
+    color: #3662db;
+}
+
+.filterTags {
+    margin-bottom: 16px;
+}
+
+.filterTagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+.filterTag {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 25px;
+    background-color: #e7edfd;
+    white-space: nowrap;
+    width: fit-content;
+    border: 1px solid transparent;
+    color: #141d38;
+    border: 1px solid #000000;
+}
+
+.filterTagText {
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.removeIcon {
+    font-size: 23px;
+    padding-top: 2px;
+    color: #343b53;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filterHeader {
+    border-bottom: 1px solid #d7d4d2;
+    padding-bottom: 16px;
+    text-align: right;
+    margin-bottom: 16px;
+}
+
+.filterTitle {
+    color: #343b53;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.filterItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #d7d4d2;
+    border-radius: 8px;
+    padding: 14px 10px;
+    margin-bottom: 12px;
+}
+
+.filterLabel {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    text-align: right;
+    flex: 1;
+}
+
+.toggleContainer {
+    display: flex;
+    align-self: center;
+}
+
+.toggleInput {
+    display: none;
+}
+
+.toggleSwitch {
+    cursor: pointer;
+    height: 24px;
+    width: 48px;
+    background: #64748b;
+    position: relative;
+    border-radius: 50px;
+    transition: background 0.3s ease;
+}
+
+.toggleSwitch.active {
+    background: #3662db;
+}
+
+.toggleHandle {
+    height: 20px;
+    width: 20px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: auto;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.toggleInput:checked+.toggleSwitch .toggleHandle {
+    left: 26px;
+    right: auto;
+}
+
+.toggleIcon {
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: 800;
+    padding-top: 3px;
+}
+
+.toggleIcon.inactive {
+    color: #64748b;
+}
+
+.toggleIcon.active {
+    color: #3662db;
+}

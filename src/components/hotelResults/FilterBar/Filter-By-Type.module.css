@@ -1,0 +1,185 @@
+.filterSection {
+    margin-bottom: 16px;
+}
+
+.sectionTitle {
+    color: #141d38;
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 16px;
+    margin-top: 6px;
+    text-align: start;
+}
+
+.starContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.starButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+    color: #0c0a0a;
+}
+
+.starButton {
+    display: flex;
+    align-items: center;
+    padding: 1px 7px;
+    border: 1px solid #94979c;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.15s ease;
+    gap: 5px;
+}
+
+.starButton:hover {
+    border-color: #3662db;
+    background-color: #f0f4ff;
+}
+
+.starButtonActive {
+    background-color: #e7edfd;
+    border-color: #3662db;
+}
+
+.starIcon {
+    color: #141d38;
+    font-size: 20px;
+    margin-left: 6px;
+}
+
+.checkboxItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.hiddenCheckbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.customCheckbox {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #727483;
+    border-radius: 4px;
+    background: white;
+    margin-left: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkboxWrapper:hover .customCheckbox {
+    border-color: #3662db;
+}
+
+.customCheckbox.checked {
+    background-color: #3662db;
+    border-color: #3662db;
+}
+
+.checkIcon {
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.customCheckbox.checked .checkIcon {
+    opacity: 1;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #0f172a;
+    cursor: pointer;
+    user-select: none;
+}
+
+.accommodationList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accommodationItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accommodationItem:hover .customCheckbox {
+    border-color: #3662db;
+}
+
+
+/* .accommodationItem:hover .checkboxLabel {
+    color: #3662db;
+} */
+
+.itemCount {
+    font-size: 14px;
+    color: #0f172a;
+    white-space: nowrap;
+}
+
+.showMoreButton {
+    background: transparent;
+    border: none;
+    color: #3662db;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 1px 0 0 0;
+    text-align: start;
+}
+
+.showMoreButton:hover {
+    text-decoration: none;
+}
+
+.mealList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mealItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mealItem:hover .customCheckbox {
+    border-color: #3662db;
+}
+
+
+/* .mealItem:hover .checkboxLabel {
+    color: #3662db;
+} */
