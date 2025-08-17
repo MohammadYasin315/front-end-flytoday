@@ -24,7 +24,7 @@ export default function BookingSteps({ currentStep = 1 }: BookingStepsProps) {
       id: 1,
       label: "اطلاعات مسافرها",
       icon: CheckCircleIcon,
-      status: currentStep >= 1 ? "completed" : "upcoming",
+      status: "completed",
     },
     {
       id: 2,
@@ -70,7 +70,7 @@ export default function BookingSteps({ currentStep = 1 }: BookingStepsProps) {
                     className={clsx(styles.stepConnector, {
                       [styles.stepConnectorActive]:
                         steps[index + 1].status === "completed" ||
-                        steps[index + 1].status === "current",
+                        steps[index + 1].status === "current",  
                     })}
                   ></div>
                 )}
@@ -79,6 +79,6 @@ export default function BookingSteps({ currentStep = 1 }: BookingStepsProps) {
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   );
 }

@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import styles from "./Order-Summary.module.css";
 import SessionExpiredModal from "./SessionExpiredModal";
+import { useCheckout } from "./contexts/CheckoutContext";
+import { toast, ToastContainer } from "react-toastify";
 
 interface OrderSummaryProps {
   initialTimeInMinutes?: number;
@@ -11,6 +13,7 @@ interface OrderSummaryProps {
   totalAmount?: number;
   loyaltyPoints?: number;
   onSessionExpire?: () => void;
+  onConfirm?: () => void;
 }
 
 export default function OrderSummary({
@@ -18,9 +21,11 @@ export default function OrderSummary({
   roomCount = 1,
   nightCount = 2,
   totalAmount = 113000000,
-  loyaltyPoints = 113,
+  loyaltyPoints = 112,
   onSessionExpire,
 }: OrderSummaryProps) {
+  const { goToNextStep, contactInfo, travelerInfo, currentStep } =
+    useCheckout();
   const router = useRouter();
   const [timeLeft, setTimeLeft] = useState(initialTimeInMinutes * 60); // Convert to seconds
   const [isSessionExpired, setIsSessionExpired] = useState(false);
@@ -69,9 +74,23 @@ export default function OrderSummary({
     router.push("/hotel");
   };
 
-  const handleConfirmAndContinue = () => {
-    // Handle form submission
-    console.log("Confirming order...");
+  const handleConfirmAndContinue = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // اعتبارسنجی اطلاعات تماس قبل از ادامه
+    if (!contactInfo.email || !contactInfo.mobile) {
+      toast.error("لطفا اطلاعات تماس را تکمیل کنید");
+      return;
+    }
+    if (
+      !travelerInfo.firstName ||
+      !travelerInfo.lastName ||
+      !travelerInfo.nationalId ||
+      !travelerInfo.gender
+    ) {
+      toast.error("لطفا اطلاعات مسافر را تکمیل کنید");
+      return;
+    }
+    goToNextStep();
   };
 
   // Determine circle color based on time remaining
@@ -83,6 +102,18 @@ export default function OrderSummary({
 
   return (
     <div className={styles.leftColumn}>
+      <ToastContainer
+        z-index={40000}
+        position="bottom-left"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <SessionExpiredModal
         isOpen={isSessionExpired}
         onClose={() => setIsSessionExpired(false)}
@@ -181,11 +212,11 @@ export default function OrderSummary({
           </div>
 
           <button
-            type="submit"
+            type="button"
             onClick={handleConfirmAndContinue}
             className={styles.confirmButton}
           >
-            تایید و ادامه
+            {currentStep === 1 ? "تایید و ادامه" : "تایید و پرداخت"}
           </button>
         </div>
 

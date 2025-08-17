@@ -65,11 +65,8 @@
 }
 
 .starFilled {
-    fill: #64748b;
-}
-
-.starEmpty {
-    fill: none;
+    fill: #eab308;
+    color: #eab308;
 }
 
 .divider {
@@ -123,7 +120,6 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
 }
 
 .breakfast {

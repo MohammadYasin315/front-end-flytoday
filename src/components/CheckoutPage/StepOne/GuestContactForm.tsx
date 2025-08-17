@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./Guest-Contact-Form.module.css";
 import { ChevronDown } from "lucide-react";
+import { useCheckout } from "../contexts/CheckoutContext";
 
 interface FormData {
   email: string;
@@ -42,6 +43,11 @@ export default function GuestContactForm() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { setContactInfo } = useCheckout();
+
+  useEffect(() => {
+    setContactInfo(formData);
+  }, [formData, setContactInfo]);
 
   const validateEmail = (email: string): string | undefined => {
     if (!email.trim()) {

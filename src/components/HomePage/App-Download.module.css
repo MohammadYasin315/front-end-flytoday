@@ -1,12 +1,9 @@
 .container {
-    width: 100%;
     max-width: 1200px;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    margin-left: 81px;
-    margin-right: 81px;
-    padding-left: 40px;
-    padding-right: 40px;
+    margin: 50px auto;
+    padding: 0 40px;
+    text-align: right;
+    direction: rtl;
 }
 
 .downloadSection {

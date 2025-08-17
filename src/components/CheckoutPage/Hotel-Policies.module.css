@@ -47,6 +47,8 @@
     white-space: nowrap;
     text-align: right;
     color: #000;
+    font-size: 0.8rem;
+    padding-top: 0.15rem;
 }
 
 .instructionsSection {
@@ -71,7 +73,7 @@
 .instructionContent {
     white-space: pre-line;
     font-size: 0.769rem;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 2;
     text-align: right;
     color: #000;

@@ -1,0 +1,375 @@
+/* Main container */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    text-align: right;
+}
+
+
+/* Title */
+
+.title {
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
+    text-align: right;
+}
+
+
+/* Form wrapper */
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+
+/* Room card */
+
+.roomCard {
+    background-color: #ffffff;
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    border-radius: 1rem;
+}
+
+
+/* Room header */
+
+.roomHeader {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0.75rem;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.roomTitle {
+    white-space: nowrap;
+}
+
+.roomDetails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    text-align: right;
+}
+
+.roomType {
+    text-align: right;
+    text-wrap: wrap;
+}
+
+.roomMeal {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    text-wrap: wrap;
+    color: #116b46;
+    direction: rtl;
+    text-align: right;
+}
+
+
+/* Form content */
+
+.formContent {
+    padding: 0.75rem;
+}
+
+.formContent {
+    padding: 1.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+
+/* Passenger header */
+
+.passengerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.passengerInfo {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0%;
+}
+
+.passengerTitle {
+    display: flex;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.passengerName {
+    display: inline;
+}
+
+.passengerRole {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.passengerBooklet {
+    cursor: pointer;
+    border: none;
+    color: #3662db;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+
+/* Fields grid */
+
+.fieldsGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.fieldsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+
+/* Field container */
+
+.fieldContainer {
+    position: relative;
+}
+
+
+/* Base field styling */
+
+.fieldBase {
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    height: 48px;
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    transition: border-color 0.2s ease-in-out;
+    cursor: pointer;
+    text-align: right;
+}
+
+
+/* Border states */
+
+.fieldDefault {
+    border-color: #727483;
+}
+
+.fieldFocused {
+    border-color: #3b82f6;
+}
+
+.fieldError {
+    border-color: #ef4444;
+}
+
+.fieldValid {
+    border-color: #3b82f6;
+}
+
+
+/* Country flag */
+
+.countryFlag {
+    display: flex;
+    margin-left: 4px;
+    height: 12px;
+    max-width: 100%;
+}
+
+
+/* Field label and value wrapper */
+
+.fieldLabelValueWrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
+
+/* Field label */
+
+.fieldLabel {
+    color: #343b53;
+    line-height: 1;
+    font-size: 1rem;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    position: absolute;
+    top: calc(48px / 2 - 1px - 0.5rem);
+    cursor: text;
+    right: 1rem;
+    transform-origin: right;
+    text-align: right;
+    user-select: none;
+}
+
+.fieldLabelScaled {
+    transform: translate(12.5%, -0.75rem) scale(0.75);
+}
+
+.nationalityLabel {
+    position: absolute;
+    right: 2.7rem;
+    transform-origin: right;
+    text-align: right;
+    color: #343b53;
+    font-size: 1rem;
+    transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0s;
+    cursor: text;
+    user-select: none;
+}
+
+.nationalityLabelScaled {
+    transform: translate(12.5%, -0.75rem) scale(0.75);
+}
+
+
+/* Field value */
+
+.fieldValue {
+    line-height: 1.25rem;
+    color: #141d38;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    text-align: right;
+    font-size: 1rem;
+}
+
+.fieldInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 100%;
+    text-align: right;
+    cursor: text;
+    font-size: 1rem;
+}
+
+.fieldValueWithLabel {
+    margin-top: 1rem;
+}
+
+.ltrInput {
+    direction: ltr;
+    text-align: left;
+}
+
+
+/* Icon wrapper */
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Chevron icon */
+
+.chevronIcon {
+    color: #343b53;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+/* Icon rotation */
+
+.iconRotate {
+    transform: rotate(180deg);
+}
+
+
+/* Error text */
+
+.errorText {
+    color: #ef4444;
+    font-size: 0.65rem;
+    line-height: 1.25rem;
+    text-align: right;
+    margin-top: 0.25rem;
+    font-weight: 700;
+}
+
+
+/* Dropdown options */
+
+.dropdownOptions {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 0.75rem rgba(12, 14, 28, 0.08);
+    position: absolute;
+    z-index: 10;
+    overflow: auto;
+    padding: 0.5rem 0;
+    top: 54px;
+    min-width: 100%;
+    max-height: 19rem;
+    right: 0;
+}
+
+.dropdownOption {
+    color: #343b53;
+    padding: 0.5rem 0.75rem;
+    min-height: 2.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.dropdownOption:hover {
+    background-color: #f3f4f6;
+}

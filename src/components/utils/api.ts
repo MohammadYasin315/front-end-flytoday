@@ -8,7 +8,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
@@ -22,7 +21,6 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor
 api.interceptors.response.use(
   (response) => {
     return response;
@@ -31,13 +29,27 @@ api.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       console.log("🚫 Unauthorized access, logging out...");
       removeTokens();
-      // Dispatch logout action if needed
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("auth:logout"));
       }
     }
     return Promise.reject(error);
   }
-);
+); //کاربر خودکار لاگ اوت بشه
+
+type HotelDetail = {};
+
+export const getHotelRooms = (hotelId: number): Promise<HotelDetail> => {
+  return api
+    .get(`/hotels/${hotelId}/`)
+    .then((response) => {
+      console.log("📦 Fetched hotel rooms:", response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching hotel rooms:", error);
+      throw error; 
+    });
+};
 
 export default api;

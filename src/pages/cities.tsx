@@ -2,8 +2,10 @@ import Header from "@/components/Layout/header";
 import Footer from "@/components/Layout/footer";
 import MainResults from "@/components/hotelResults/MainResults";
 import RecentSearchItem from "@/components/hotelResults/RecentSearchItem";
+import { useRouter } from 'next/router';
 
 export default function Cities() {
+  
   const handleModifySearch = () => {
     console.log("Modify search clicked!");
     // Add your search modification logic here
@@ -19,7 +21,7 @@ export default function Cities() {
         onModifySearch={handleModifySearch}
       />
       <link rel="icon" href="/favicon.ico" />
-      <MainResults />
+      <MainResults  />
       <Footer />
     </>
   );

@@ -5,35 +5,36 @@ import { loginSuccess, logout } from "@/store/authSlice";
 import { getAccessToken } from "@/components/utils/auth";
 
 export const useAuth = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const { phoneNumber, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
   );
 
   useEffect(() => {
-    // Check localStorage and sync with Redux
     const syncAuth = () => {
       const token = getAccessToken();
       const storedPhoneNumber = localStorage.getItem("phoneNumber");
 
       if (token && storedPhoneNumber) {
-        // User is authenticated
-        if (!isAuthenticated || phoneNumber !== storedPhoneNumber) {
+        if (phoneNumber !== storedPhoneNumber) {
           dispatch(loginSuccess(storedPhoneNumber));
+          console.log(
+            "🔑 User authenticated with phone number:",
+            storedPhoneNumber
+          );
         }
       } else {
-        // User is not authenticated
-        if (isAuthenticated) {
-          dispatch(logout());
-        }
+        dispatch(logout());
       }
-      setIsLoading(false);
+      console.log(
+        "🔄 Syncing authentication state with Redux store",
+        phoneNumber,
+        isAuthenticated
+      );
     };
 
     syncAuth();
 
-    // Listen for storage changes (multi-tab support)
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "phoneNumber" || e.key === "accessToken") {
         syncAuth();
@@ -47,6 +48,5 @@ export const useAuth = () => {
   return {
     phoneNumber,
     isAuthenticated,
-    isLoading,
   };
 };

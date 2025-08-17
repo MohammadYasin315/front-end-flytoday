@@ -2,9 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import clsx from "clsx";
 import styles from "./header.module.css";
 import AuthModal from "../UI/Modal/AuthModal";
-import { useSelector, useDispatch } from "react-redux";
-import { loginSuccess, logout } from "../../store/authSlice";
-import { RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/authSlice";
 import { removeTokens } from "../utils/auth";
 import { useAuth } from "@/hooks/useAuth"
 
@@ -25,11 +24,6 @@ const Header = () => {
   const toggleAuthModal = () => {
     setIsAuthModalOpen(!isAuthModalOpen);
   };
-
-  // const handleLoginSuccess = (number: string) => {
-  //   dispatch(loginSuccess(number));
-  //   setIsAuthModalOpen(false);
-  // };
 
   const handleLogout = () => {
     removeTokens();
@@ -57,7 +51,6 @@ const Header = () => {
     }
   }, [lastScrollY]);
 
-  // Click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -93,14 +86,13 @@ const Header = () => {
             <div className={styles.leftSection}>
               <a
                 className={styles.logo}
-                aria-label="company logo which is linked to home page"
                 href="/"
               >
                 <img
                   alt="logo"
                   fetchPriority="high"
-                  width="165"
-                  height="50"
+                  width="180"
+                  height="60"
                   decoding="async"
                   data-nimg="1"
                   className={styles.logoImage}
@@ -217,11 +209,10 @@ const Header = () => {
                 <span className={styles.registerIcon}></span>
                 ثبت اقامتگاه
               </button>
-              <a target="_blank" href="/getapp" rel="noreferrer">
+              <a target="_blank" href="/getapp">
                 <button
                   className={styles.appButton}
                   type="submit"
-                  aria-label="appButton"
                 >
                   <span className={styles.appIcon}></span>
                   <span className={styles.appText}>دریافت اَپ</span>

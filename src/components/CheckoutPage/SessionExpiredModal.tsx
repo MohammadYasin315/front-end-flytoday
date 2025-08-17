@@ -13,7 +13,6 @@ export default function SessionExpiredModal({
 }: SessionExpiredModalProps) {
   const router = useRouter();
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -23,7 +22,6 @@ export default function SessionExpiredModal({
       document.body.style.height = "auto";
     }
 
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = "unset";
       document.body.style.height = "auto";
@@ -31,12 +29,12 @@ export default function SessionExpiredModal({
   }, [isOpen]);
 
   const handleBackToHome = () => {
-    onClose?.(); // Close modal before navigating
+    onClose?.(); 
     router.push("/hotel");
   };
 
   const handleRefreshSearch = () => {
-    onClose?.(); // Close modal before reloading
+    onClose?.(); 
     window.location.reload();
   };
 
@@ -49,7 +47,7 @@ export default function SessionExpiredModal({
           <div className={styles.iconContainer}>
             <img
               src="https://cdn-a.cdnfl2.ir/upload/flytoday/public/assets/errors/time-out-clock.svg"
-              alt="time expired"
+              alt="time"
               className={styles.iconImage}
             />
           </div>
@@ -62,19 +60,19 @@ export default function SessionExpiredModal({
 
           <div className={styles.buttonContainer}>
             <button
-              className={`${styles.button} ${styles.primaryButton}`}
-              type="button"
-              onClick={handleRefreshSearch}
-            >
-              بروزرسانی جستجو
-            </button>
-
-            <button
               className={`${styles.button} ${styles.secondaryButton}`}
               type="button"
               onClick={handleBackToHome}
             >
               بازگشت به صفحه اصلی
+            </button>
+
+            <button
+              className={`${styles.button} ${styles.primaryButton}`}
+              type="button"
+              onClick={handleRefreshSearch}
+            >
+              بروزرسانی جستجو
             </button>
           </div>
         </div>

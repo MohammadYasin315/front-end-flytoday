@@ -25,7 +25,6 @@ export default function AppDownload() {
 
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-      // Check for Persian characters
       const persianRegex = /[\u0600-\u06FF]/;
 
       if (persianRegex.test(value) || !emailRegex.test(value)) {
@@ -39,7 +38,6 @@ export default function AppDownload() {
     const value = e.target.value
     setEmailOrPhone(value)
 
-    // اگر قبلاً blur شده و الان خالی کرده
     if (hasBlurred) {
       if (!value.trim()) {
         setError("لطفا ایمیل یا شماره موبایل را وارد کنید")
@@ -52,7 +50,6 @@ export default function AppDownload() {
 
   const handleInputFocus = () => {
     setIsFocused(true)
-    // فقط اگر خطای خالی بودن باشه پاک کن، بقیه خطاها رو نگه دار
     if (error === "لطفا ایمیل یا شماره موبایل را وارد کنید") {
       setError("")
     }
@@ -88,7 +85,6 @@ export default function AppDownload() {
 
     console.log("Sending download link to:", emailOrPhone)
 
-    // Clear input after successful submission
     setEmailOrPhone("")
     setError("")
     setHasBlurred(false)

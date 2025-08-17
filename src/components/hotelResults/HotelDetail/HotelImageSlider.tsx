@@ -6,18 +6,8 @@ import styles from "./Hotel-Image-Slider.module.css";
 import { HotelInfo } from "./HotelInfo";
 
 interface HotelImageSliderProps {
-  images?: { src: string; alt: string }[];
+  images: { src: string; alt: string }[];
   isFeatured?: boolean;
-  hotelId?: string;
-  cityId?: string;
-  checkIn?: string;
-  checkOut?: string;
-  adt?: number[];
-  chd?: number[];
-  chdAges?: string[];
-  dateLang?: string;
-  isDomestic?: boolean;
-  countryCode?: string;
   hotelName?: string;
   hotelType?: string;
   starRating?: number;
@@ -26,42 +16,13 @@ interface HotelImageSliderProps {
   hasBreakfast?: boolean;
   amenities?: string[];
   rating?: number;
-  reviewCount?: number;
   remainingRooms?: number;
   priceFrom?: number;
-  currency?: string;
 }
 
 export function HotelImageSlider({
-  images = [
-    {
-      src: "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/111/main.jpg?width=720",
-      alt: "Hotel Exterior",
-    },
-    {
-      src: "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/111/1.jpg?width=360",
-      alt: "Hotel Room Interior",
-    },
-    {
-      src: "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/111/2.jpg?width=360",
-      alt: "Another Hotel Room",
-    },
-    {
-      src: "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/111/3.jpg?width=360",
-      alt: "Hotel Pool",
-    },
-  ],
+  images,
   isFeatured = false,
-  hotelId = "111",
-  cityId = "1",
-  checkIn = "2025-07-12",
-  checkOut = "2025-07-13",
-  adt = [1],
-  chd = [0],
-  chdAges = [],
-  dateLang = "fa",
-  isDomestic = true,
-  countryCode = "IR",
   hotelName,
   hotelType,
   starRating,
@@ -70,10 +31,8 @@ export function HotelImageSlider({
   hasBreakfast,
   amenities,
   rating,
-  reviewCount,
   remainingRooms,
   priceFrom,
-  currency,
 }: HotelImageSliderProps) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [isBookmarked, setIsBookmarked] = React.useState(false);
@@ -81,7 +40,7 @@ export function HotelImageSlider({
   const [hasInteractedWithSlider, setHasInteractedWithSlider] =
     React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  
+
   const totalImages = images.length;
 
   const handleImageChange = (newIndex: number) => {
@@ -109,23 +68,6 @@ export function HotelImageSlider({
     e.preventDefault();
     setIsBookmarked((prev) => !prev);
   };
-
-  const handleShowRooms = () => {
-    const hotelAvailabilityUrl = `/hotel/search/hotelavailability?hotelId=${hotelId}&cityId=${cityId}&checkIn=${checkIn}&checkOut=${checkOut}&adt[0]=${
-      adt[0]
-    }&chd[0]=${chd[0]}&chdAges[0]=${
-      chdAges[0] || ""
-    }&dateLang=${dateLang}&isDomestic=${isDomestic}&countryCode=${countryCode}`;
-
-    window.open(hotelAvailabilityUrl, "_blank");
-  };
-
-  const hotelAvailabilityUrl = `/hotel/search/hotelavailability?hotelId=${hotelId}&cityId=${cityId}&checkIn=${checkIn}&checkOut=${checkOut}&adt[0]=${
-    adt[0]
-  }&chd[0]=${chd[0]}&chdAges[0]=${
-    chdAges[0] || ""
-  }&dateLang=${dateLang}&isDomestic=${isDomestic}&countryCode=${countryCode}`;
-
   return (
     <a
       target="_blank"
@@ -138,7 +80,6 @@ export function HotelImageSlider({
           [styles.normalBorder]: !isFeatured,
         }
       )}
-      href={hotelAvailabilityUrl}
       rel="noreferrer"
     >
       {/* Hotel Info Section - Left */}
@@ -151,11 +92,8 @@ export function HotelImageSlider({
         hasBreakfast={hasBreakfast}
         amenities={amenities}
         rating={rating}
-        reviewCount={reviewCount}
         remainingRooms={remainingRooms}
         priceFrom={priceFrom}
-        currency={currency}
-        onShowRooms={handleShowRooms}
       />
 
       {/* Image Slider Section - Right */}
@@ -169,7 +107,6 @@ export function HotelImageSlider({
             <button
               className={clsx(styles.bookmarkButtonBase, styles.bookmarkButton)}
               onClick={handleBookmarkToggle}
-              aria-label="bookmark hotel"
             >
               <Heart
                 className={styles.heartIcon}
@@ -192,7 +129,7 @@ export function HotelImageSlider({
                   decoding="async"
                   data-nimg="1"
                   className={styles.hotelImage}
-                  src={images[currentImageIndex].src || "/placeholder.svg"}
+                  src={images[currentImageIndex].src}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}

@@ -86,28 +86,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   }, [loginInput]);
 
-  // Input change handlers
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput(e.target.value);
 
-    // بررسی اعتبار ورودی در هنگام تایپ
-    const value = e.target.value;
-
     if (!touched) setTouched(true);
-    setApiError("");
   };
 
-  // Close modal when clicking outside
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      e.preventDefault();
-      e.stopPropagation();
       onClose();
     }
   };
 
   const handleLoginSuccess = (phoneNumber: string) => {
-    // Store phone number in localStorage for persistence
     if (typeof window !== "undefined") {
       localStorage.setItem("phoneNumber", phoneNumber);
     }
@@ -115,7 +106,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     onClose();
   };
 
-  // Handle continue button click
   const handleContinue = async () => {
     if (isValid && !isLoading) {
       setIsLoading(true);
@@ -133,7 +123,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             "خطا در ارتباط با سرور. لطفا اتصال اینترنت خود را بررسی کنید"
           );
         } else {
-          // اگر خطای دیگری بود مثل 400 یا 404
           setShowPasswordModal(true);
         }
       } finally {
@@ -142,14 +131,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  // Switch to register mode
   const switchToRegister = () => {
     setShowRegisterModal(true);
   };
 
   if (!isOpen) return null;
 
-  // If password modal should be shown
   if (showPasswordModal) {
     return (
       <PasswordModal
@@ -158,14 +145,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         onBack={() => setShowPasswordModal(false)}
         loginInput={loginInput}
         onLoginSuccess={handleLoginSuccess}
-      />
-    );
-  }
-
-  // If register modal should be shown
-  if (showRegisterModal) {
-    return (
-      <RegisterModal
+        />
+      );
+    }
+    
+    if (showRegisterModal) {
+      return (
+        <RegisterModal
         isOpen={true}
         onClose={onClose}
         onBack={() => setShowRegisterModal(false)}
@@ -187,29 +173,21 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         draggable
         pauseOnHover
       />
-      <div className={styles.dialogModal} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.dialogModal}>
         <div className={styles.modalContent}>
           {/* Header with close button */}
           <div className={styles.modalHeader}>
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              onClick={() => {
                 onClose();
               }}
               className={styles.closeButton}
-              aria-label="Close"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                viewBox="0 0 24 24"
-                fill="none"
                 stroke="#3662db"
                 strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
               >
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -221,14 +199,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <div className={styles.logoContainer}>
             <img
               alt="logo"
-              fetchPriority="high"
-              width="170"
-              height="51"
-              decoding="async"
-              data-nimg="1"
-              className="max-w-full object-contain"
               src="https://cdn-a.flytoday.ir/upload/flytoday/public/white-labels/flytoday/images/logo.svg"
-              style={{ color: "transparent" }}
             />
           </div>
 
@@ -237,34 +208,28 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <h2 className={styles.title}>ورود یا ثبت‌نام</h2>
           </div>
 
-          {/* API Error message */}
-          {apiError && <div className={styles.errorMessage}>{apiError}</div>}
-
           {/* Login Form */}
           <div className={styles.inputContainer}>
             <input
               ref={inputRef}
-              dir="rtl"
-              type="text"
               placeholder="شماره موبایل یا ایمیل"
               value={loginInput}
               onChange={handleLoginInputChange}
+              className={clsx(styles.inputField, {
+                [styles.valid]: isValid && loginInput.trim(),
+                [styles.invalid]: touched && !isValid,
+              })}
               onBlur={() => {
                 setTouched(true);
                 if (inputRef.current) {
                   if (!loginInput.trim()) {
                     setIsValid(false);
-                    setErrorMessage("کادر ورودی نمیتواند خالی باشد");
                     inputRef.current.classList.add("invalid");
                   } else if (!isValid) {
                     inputRef.current.classList.add("invalid");
                   }
                 }
               }}
-              className={clsx(styles.inputField, {
-                [styles.valid]: isValid && loginInput.trim(),
-                [styles.invalid]: touched && !isValid,
-              })}
             />
             <label className={styles.floatingLabel}>
               شماره موبایل یا ایمیل
@@ -283,7 +248,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               [styles.valid]: !isLoading && isValid,
               [styles.invalid]: !isLoading && !isValid,
             })}
-            disabled={!isValid || isLoading}
             onClick={handleContinue}
           >
             {isLoading ? (
@@ -302,9 +266,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {/* Register link */}
           <div className={styles.registerLinkContainer}>
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              onClick={() => {
                 switchToRegister();
               }}
               className={styles.linkButton}

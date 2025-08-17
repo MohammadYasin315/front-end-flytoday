@@ -83,11 +83,6 @@ export default function PasswordModal({
     }
   };
 
-  // const handleLoginSuccess = (phoneNumber: string) => {
-  //   onLoginSuccess(phoneNumber);
-  //   onClose();
-  // };
-
   // Handle login button click
   const handleLogin = () => {
     if (isValid && !isLoading) {
@@ -254,23 +249,18 @@ export default function PasswordModal({
             <button
               type="button"
               className={styles.passwordToggle}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              onClick={() => {
                 setShowPassword(!showPassword);
               }}
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
               >
                 {showPassword ? (
                   <>

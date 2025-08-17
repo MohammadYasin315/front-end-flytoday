@@ -16,15 +16,6 @@ export const getAccessToken = (): string | null => {
   return null;
 };
 
-// export const getRefreshToken = (): string | null => {
-//   if (typeof window !== "undefined") {
-//     const token = localStorage.getItem("refreshToken");
-//     console.log("🔍 Retrieved refreshToken:", token ? "exists" : "null");
-//     return token;
-//   }
-//   return null;
-// };
-
 export const removeTokens = () => {
   if (typeof window !== "undefined") {
     console.log("🗑 Removing tokens from localStorage");
@@ -34,12 +25,3 @@ export const removeTokens = () => {
   }
 };
 
-// export const isAuthenticated = (): boolean => {
-//   if (typeof window !== "undefined") {
-//     const token = getAccessToken();
-//     const auth = !!token;
-//     console.log("🔒 isAuthenticated:", auth);
-//     return auth;
-//   }
-//   return false;
-// };

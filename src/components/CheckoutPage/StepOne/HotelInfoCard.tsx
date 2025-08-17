@@ -34,12 +34,11 @@ export default function HotelInfoCard({
   className,
 }: HotelInfoCardProps) {
   const renderStars = () => {
-    return Array.from({ length: 4 }, (_, index) => (
+    return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
         className={clsx(styles.star, {
           [styles.starFilled]: index < rating,
-          [styles.starEmpty]: index >= rating,
         })}
         size={16}
       />
@@ -51,7 +50,7 @@ export default function HotelInfoCard({
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
-            src={imageUrl || "/placeholder.svg"}
+            src={imageUrl}
             alt={imageAlt}
             width={320}
             height={185}

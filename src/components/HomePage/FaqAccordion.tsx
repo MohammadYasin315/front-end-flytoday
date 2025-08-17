@@ -157,8 +157,6 @@ export default function FaqAccordion() {
                 type="button"
                 className={styles.accordionButton}
                 onClick={() => toggleItem(item.id)}
-                aria-expanded={isOpen}
-                aria-controls={`answer-${item.id}`}
               >
                 <div className={styles.iconWrapper}>
                   <ChevronDown className={clsx(styles.icon, isOpen && styles.iconRotated)} />
@@ -171,7 +169,6 @@ export default function FaqAccordion() {
               <div
                 id={`answer-${item.id}`}
                 className={clsx(styles.answerWrapper, isOpen && styles.answerWrapperOpen)}
-                aria-hidden={!isOpen}
               >
                 <div className={styles.answer}>
                   <p>

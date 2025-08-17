@@ -1,57 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Checkout-Main.module.css";
-import BookingSteps from "@/components/CheckoutPage/BookingSteps";
+import { CheckoutProvider } from "./contexts/CheckoutContext";
+import CheckoutSteps from "./CheckoutSteps";
 import OrderSummary from "@/components/CheckoutPage/OrderSummary";
 import SessionExpiredModal from "@/components/CheckoutPage/SessionExpiredModal";
-import HotelInfoCard from "./HotelInfoCard";
-import GuestContactForm from "./GuestContactForm";
-import CancellationPolicy from "./CancellationPolicy";
-import HotelPolicies from "./HotelPolicies";
 
 export default function CheckoutMain() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
-        <div className={styles.grid}>
-          <div className={styles.leftColumn}>
-            <BookingSteps currentStep={1} />
-            <HotelInfoCard
-              hotelName="هویزه تهران"
-              imageUrl="https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/79/main.jpg?width=320"
-              imageAlt="Howeyzeh Tehran Hotel"
-              rating={4}
-              score={6.7}
-              roomType="اتاق دو تخته تویین"
-              hasBreakfast={true}
-              checkIn="12 مرداد"
-              checkOut="14 مرداد"
-              nights={2}
-              hotelUrl="/hotel/howeyzeh-tehran"
-            />
-
-            <GuestContactForm />
-            <CancellationPolicy/>
-            <HotelPolicies />
+    <CheckoutProvider>
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+          <div className={styles.grid}>
+            <div className={styles.leftColumn}>
+              <CheckoutSteps />
+            </div>
+            <OrderSummary onSessionExpire={() => setIsModalOpen(true)} />
           </div>
-
-          <OrderSummary
-            initialTimeInMinutes={20}
-            roomCount={1}
-            nightCount={8}
-            totalAmount={112000000}
-            loyaltyPoints={111}
-            onSessionExpire={() => setIsModalOpen(true)}
+          <SessionExpiredModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
           />
-        </div>
-
-        <SessionExpiredModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      </form>
-    </div>
+        </form>
+      </div>
+    </CheckoutProvider>
   );
 }

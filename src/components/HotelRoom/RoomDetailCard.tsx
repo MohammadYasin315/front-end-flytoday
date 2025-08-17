@@ -28,7 +28,6 @@ export default function RoomDetailCard({
   return (
     <div className={clsx(styles.cardWrapper)}>
       <div className={styles.card}>
-        {/* Image Section */}
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
             <Image
@@ -42,9 +41,7 @@ export default function RoomDetailCard({
           </div>
         </div>
 
-        {/* Content Section */}
         <div className={styles.content}>
-          {/* Title Section */}
           <div className={styles.titleSection}>
             <h3 className={styles.title}>
               {title}
@@ -52,7 +49,6 @@ export default function RoomDetailCard({
             </h3>
           </div>
 
-          {/* Cancellation Policy */}
           <div className={styles.policySection}>
             <div className={styles.policyLink}>
               <span className={styles.policyText}>قوانین کنسلی</span>
@@ -60,7 +56,6 @@ export default function RoomDetailCard({
             </div>
           </div>
 
-          {/* More Details */}
           <div className={styles.detailsSection}>
             <div className={styles.detailsLink}>
               <span className={styles.detailsText}>جزئیات بیشتر</span>
@@ -68,7 +63,6 @@ export default function RoomDetailCard({
             </div>
           </div>
 
-          {/* Loyalty Points */}
           <div className={styles.loyaltySection}>
             <div className={styles.loyaltyInfo}>
               <Image
@@ -79,12 +73,11 @@ export default function RoomDetailCard({
                 className={styles.coinIcon}
               />
               <span className={styles.loyaltyText}>
-                  دریافت {loyaltyPoints} امتیاز در باشگاه مشتریان
+                دریافت {loyaltyPoints} امتیاز در باشگاه مشتریان
               </span>
             </div>
           </div>
 
-          {/* Footer Section */}
           <div className={styles.footer}>
             <div className={styles.priceSection}>
               <div className={styles.priceContainer}>

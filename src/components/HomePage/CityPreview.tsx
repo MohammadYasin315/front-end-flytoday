@@ -82,7 +82,6 @@ const cityData: CityData[] = [
   },
 ]
 
-// Cache for failed images to prevent re-requests
 const failedImages = new Set<string>()
 // console.log("🔍 failedImages now:", Array.from(failedImages))
 
@@ -105,10 +104,8 @@ function CityCard({ city, priority = false }: CityCardProps) {
 //   loadingTimeout
 // })
 
-  // Reset states when component mounts or city changes
   useEffect(() => {
     // console.log("🔄 useEffect city.image fired with", city.image)
-    // Check if this image has failed before
     if (failedImages.has(city.image)) {
       console.log("⚠️ image in failedImages, use fallback immediately.")
       setImageError(true)
@@ -119,13 +116,11 @@ function CityCard({ city, priority = false }: CityCardProps) {
 
     setImageLoaded(false)
     setImageError(false)
-    // Add timestamp to prevent caching issues only for first load
     const timestamp = new Date().getTime()
     const separator = city.image.includes("?") ? "&" : "?"
     setImageSrc(`${city.image}${separator}t=${timestamp}`)
     console.log("→ final imageSrc computed:", timestamp)
 
-    // Set timeout for loading (10 seconds)
     const timeout = setTimeout(() => {
       console.log("⏱️ timeout triggered for", city.id)
       if (!imageLoaded && !imageError) {
@@ -142,7 +137,6 @@ function CityCard({ city, priority = false }: CityCardProps) {
     }
   }, [city.image])
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (loadingTimeout) {
@@ -165,18 +159,14 @@ function CityCard({ city, priority = false }: CityCardProps) {
       clearTimeout(loadingTimeout)
       setLoadingTimeout(null)
     }
-    // Add to failed images cache
     failedImages.add(city.image)
     setImageError(true)
     setImageLoaded(true)
-    // Set the fallback image directly
     setImageSrc("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-f4N8YrtxjOQkGh3COWqXCFTNR1A3hx.png")
   }
 
-  // Check network connectivity
   useEffect(() => {
     const handleOffline = () => {
-      // When offline, if currently loading, show fallback image
       if (!imageLoaded && !imageError) {
         handleImageError()
       }
@@ -207,7 +197,7 @@ function CityCard({ city, priority = false }: CityCardProps) {
       <img
         key={`${city.id}-${imageSrc}`}
         alt={city.name}
-        src={imageSrc || "/placeholder.svg"}
+        src={imageSrc}
         className={styles.cityImage}
         onLoad={handleImageLoad}
         onError={handleImageError}
@@ -227,7 +217,6 @@ function CityCard({ city, priority = false }: CityCardProps) {
 export default function CityPreview() {
   const [refreshKey, setRefreshKey] = useState(0)
 
-  // Force refresh on component mount
   useEffect(() => {
     setRefreshKey(Date.now())
   }, [])

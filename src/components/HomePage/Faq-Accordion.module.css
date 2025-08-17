@@ -78,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.7s ease-in-out;
     color: #343b53;
     font-size: 1rem;
     font-weight: 400;
@@ -108,7 +108,7 @@
 
 .answerWrapper {
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
+    transition: max-height 0.7s ease-in-out;
     max-height: 0;
     padding-right: 2.75rem;
 }

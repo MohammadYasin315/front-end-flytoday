@@ -12,10 +12,8 @@ interface HotelInfoProps {
   hasBreakfast?: boolean;
   amenities?: string[];
   rating?: number;
-  reviewCount?: number;
   remainingRooms?: number;
   priceFrom?: number;
-  currency?: string;
   onShowRooms?: () => void;
   className?: string;
 }
@@ -28,22 +26,21 @@ const amenityIcons: Record<string, React.ReactNode> = {
 };
 
 export function HotelInfo({
-  hotelName = "آناتا تهران",
-  hotelType = "هتل",
-  starRating = 4,
-  address = "تهران، خیابان آزادی، نرسیده به میدان انقلاب، روبروی دانشکده دامپزشکی، انتهای خیابان زارع، پلاک ۱",
-  roomType = "اتاق یک تخته",
-  hasBreakfast = true,
+  hotelName,
+  hotelType,
+  starRating,
+  address,
+  roomType,
+  hasBreakfast,
   amenities = ["وای فای", "پارکینگ", "رستوران", "آسانسور"],
-  rating = 6.7,
-  reviewCount = 0,
-  remainingRooms = 2,
-  priceFrom = 43500000,
-  currency = "ریال",
+  rating,
+  remainingRooms,
+  priceFrom = 5000000,
   onShowRooms,
   className,
 }: HotelInfoProps) {
   const renderStars = () => {
+    if (!starRating) return null;
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
@@ -55,8 +52,17 @@ export function HotelInfo({
     ));
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price?: number) => {
+    if (!price) return "---";
     return price.toLocaleString("fa-IR");
+  };
+
+  const getRatingDescription = (rating?: number) => {
+    if (!rating) return "---";
+    if (rating >= 8) return "عالی";
+    if (rating >= 6) return "خیلی خوب";
+    if (rating >= 4) return "متوسط";
+    return "ضعیف";
   };
 
   return (
@@ -85,7 +91,7 @@ export function HotelInfo({
         <span className={styles.roomType}>
           {roomType}
           {hasBreakfast && (
-            <span className={styles.breakfastBadge}>  (صبحانه) </span>
+            <span className={styles.breakfastBadge}> (صبحانه) </span>
           )}
         </span>
       </span>
@@ -104,14 +110,18 @@ export function HotelInfo({
               </div>
             ))}
           </div>
-          <div className={styles.ratingRow}>
-            <div className={styles.ratingContainer}>
-            <small className={styles.ratingDescription}>خیلی خوب</small>
-              <div className={styles.ratingBadge}>
-                <span className={styles.ratingScore}>{rating} / 10</span>
+          {rating && (
+            <div className={styles.ratingRow}>
+              <div className={styles.ratingContainer}>
+                <small className={styles.ratingDescription}>
+                  {getRatingDescription(rating)}
+                </small>
+                <div className={styles.ratingBadge}>
+                  <span className={styles.ratingScore}>{rating} / 10</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Left Section - Price info and Button */}
