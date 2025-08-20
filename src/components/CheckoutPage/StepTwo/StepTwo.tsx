@@ -14,7 +14,7 @@ const StepTwo: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <HotelInfoCard {...hotelData} />
+      {hotelData && <HotelInfoCard {...hotelData} />}
       <TravelerInfoForm />
       <CancellationPolicy />
       <HotelPolicies />

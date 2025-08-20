@@ -5,15 +5,17 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 import styles from "./Room-Detail-Card.module.css";
+import router from "next/router";
 
 interface RoomDetailCardProps {
   title: string;
   subtitle?: string;
   image: string;
-  price: string;
+  price: number;
   currency: string;
   loyaltyPoints: number;
-  bookingUrl: string;
+  roomId: number;
+  onSelect: () => void;
 }
 
 export default function RoomDetailCard({
@@ -21,10 +23,15 @@ export default function RoomDetailCard({
   subtitle,
   image,
   price,
-  currency,
   loyaltyPoints,
-  bookingUrl,
+  roomId,
+  onSelect,
 }: RoomDetailCardProps) {
+  const formatPrice = (price?: number) => {
+    if (!price) return "---";
+    return price.toLocaleString("fa-IR");
+  };
+
   return (
     <div className={clsx(styles.cardWrapper)}>
       <div className={styles.card}>
@@ -82,18 +89,22 @@ export default function RoomDetailCard({
             <div className={styles.priceSection}>
               <div className={styles.priceContainer}>
                 <div className={styles.priceWrapper}>
-                  <span className={styles.priceAmount}>{price}</span>
-                  <span className={styles.priceCurrency}>{currency}</span>
+                  <span className={styles.priceAmount}>
+                    {formatPrice(price)}
+                  </span>
+                  <span className={styles.priceCurrency}>ريال</span>
                 </div>
               </div>
             </div>
 
             <div className={styles.bookingSection}>
-              <a href={bookingUrl} className={styles.bookingLink}>
-                <button className={styles.bookingButton} type="button">
-                  انتخاب اتاق
-                </button>
-              </a>
+              <button
+                onClick={() => router.push(`/checkout?room_id=${roomId}`)} // 👈 اینجا تغییر کرد
+                className={styles.bookingButton}
+                type="button"
+              >
+                انتخاب اتاق
+              </button>
             </div>
           </div>
         </div>

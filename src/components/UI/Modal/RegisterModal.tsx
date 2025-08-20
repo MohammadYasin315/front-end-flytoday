@@ -21,7 +21,6 @@ export default function RegisterModal({
   onBack,
   onLoginSuccess,
 }: RegisterModalProps) {
-  // Modal state
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState({
     phone: false,
@@ -40,18 +39,15 @@ export default function RegisterModal({
   });
   const [apiError, setApiError] = useState("");
 
-  // Registration input state
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // Refs for inputs
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  // Reset form when modal is closed
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
@@ -64,7 +60,6 @@ export default function RegisterModal({
         setApiError("");
       }, 300);
     } else {
-      // Auto focus first input when modal opens
       setTimeout(() => {
         if (phoneInputRef.current) {
           phoneInputRef.current.focus();
@@ -73,7 +68,6 @@ export default function RegisterModal({
     }
   }, [isOpen]);
 
-  // Validate phone number
   useEffect(() => {
     if (!phone.trim()) {
       setIsValid((prev) => ({ ...prev, phone: false }));
@@ -99,7 +93,6 @@ export default function RegisterModal({
     }
   }, [phone]);
 
-  // Validate email
   useEffect(() => {
     if (!email.trim()) {
       setIsValid((prev) => ({ ...prev, email: false }));
@@ -125,7 +118,6 @@ export default function RegisterModal({
     }
   }, [email]);
 
-  // Validate password
   useEffect(() => {
     if (!password.trim()) {
       setIsValid((prev) => ({ ...prev, password: false }));
@@ -159,7 +151,6 @@ export default function RegisterModal({
     }
   }, [password]);
 
-  // Input change handlers
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
 
@@ -181,7 +172,6 @@ export default function RegisterModal({
     setApiError("");
   };
 
-  // Close modal when clicking outside
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       e.preventDefault();
@@ -190,7 +180,6 @@ export default function RegisterModal({
     }
   };
 
-  // Handle register button click
   const handleRegister = () => {
     const allFieldsValid = isValid.phone && isValid.email && isValid.password;
 
@@ -254,7 +243,6 @@ export default function RegisterModal({
     }
   };
 
-  // Check if all fields are valid for enabling the register button
   const isFormValid = isValid.phone && isValid.email && isValid.password;
 
   if (!isOpen) return null;

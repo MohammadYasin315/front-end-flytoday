@@ -2,8 +2,10 @@ import type React from "react";
 import clsx from "clsx";
 import { Star, Wifi, ParkingCircle, Utensils, Building } from "lucide-react";
 import styles from "./Hotel-Info.module.css";
+import { useRouter } from "next/router";
 
 interface HotelInfoProps {
+  hotelId?: number;
   hotelName?: string;
   hotelType?: string;
   starRating?: number;
@@ -26,6 +28,7 @@ const amenityIcons: Record<string, React.ReactNode> = {
 };
 
 export function HotelInfo({
+  hotelId,
   hotelName,
   hotelType,
   starRating,
@@ -36,9 +39,16 @@ export function HotelInfo({
   rating,
   remainingRooms,
   priceFrom = 5000000,
-  onShowRooms,
   className,
 }: HotelInfoProps) {
+  const router = useRouter();
+
+  const handleShowRooms = () => {
+    if (!hotelId) return;
+    router.push(`/rooms?hotel_id=${hotelId}`);
+
+  };
+
   const renderStars = () => {
     if (!starRating) return null;
     return Array.from({ length: 5 }, (_, index) => (
@@ -90,9 +100,9 @@ export function HotelInfo({
       <span className={styles.roomTypeSection}>
         <span className={styles.roomType}>
           {roomType}
-          {hasBreakfast && (
-            <span className={styles.breakfastBadge}> (صبحانه) </span>
-          )}
+          <span className={styles.breakfastBadge}>
+            {hasBreakfast ? " (صبحانه)" : " (بدون صبحانه)"}
+          </span>
         </span>
       </span>
 
@@ -140,7 +150,7 @@ export function HotelInfo({
           </div>
           <button
             className={styles.showRoomsButton}
-            onClick={onShowRooms}
+            onClick={handleShowRooms}
             type="button"
           >
             نمایش اتاق‌ها

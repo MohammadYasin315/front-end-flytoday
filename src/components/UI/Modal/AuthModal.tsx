@@ -26,11 +26,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const dispatch = useDispatch();
-  // Login state
   const [loginInput, setLoginInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Reset form when modal is closed
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
@@ -42,7 +40,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         setApiError("");
       }, 300);
     } else {
-      // Auto focus input when modal opens
       setTimeout(() => {
         if (inputRef.current) {
           inputRef.current.focus();
@@ -51,19 +48,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   }, [isOpen]);
 
-  // Validate login input
   useEffect(() => {
-    // Validate phone/email
     if (!loginInput.trim()) {
       setIsValid(false);
       setErrorMessage("کادر ورودی نمیتواند خالی باشد");
       return;
     }
 
-    // Check if input is a valid phone number (starts with 09 followed by 9 more digits)
     const isPhoneValid = /^09\d{9}$/.test(loginInput);
 
-    // Check if input is a valid email
     const isEmailValid =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginInput) &&
       !/[\u0600-\u06FF]/.test(loginInput);

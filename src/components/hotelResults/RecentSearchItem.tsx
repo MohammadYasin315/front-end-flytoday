@@ -1,7 +1,13 @@
-import { CalendarIcon, BuildingOffice2Icon, UserIcon } from "@heroicons/react/24/solid";
+import {
+  CalendarIcon,
+  BuildingOffice2Icon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import styles from "./Recent-Search-Item.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface RecentSearchItemProps {
   location?: string;
@@ -12,12 +18,22 @@ interface RecentSearchItemProps {
 }
 
 export default function RecentSearchItem({
-  location = "رزرو هتل‌های تهران",
-  dateRange = "20 تیر - 24 تیر",
-  guestInfo = "1 مسافر، 1 اتاق",
   onModifySearch,
   className,
 }: RecentSearchItemProps) {
+  const searchData = useSelector((state: RootState) => state.search);
+
+  const formatDateRange = () => {
+    if (searchData.checkIn && searchData.checkOut) {
+      return `${searchData.checkIn} ---> ${searchData.checkOut}`;
+    }
+    return "تاریخ مشخص نشده";
+  };
+
+  const formatGuestInfo = () => {
+    return `${searchData.guests} مسافر، ${searchData.rooms} اتاق`;
+  };
+
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -63,15 +79,19 @@ export default function RecentSearchItem({
             <div className={styles.searchInfo}>
               <div className={styles.infoItem}>
                 <BuildingOffice2Icon className={styles.icon} />
-                <span className={styles.text}>{location}</span>
+                <span className={styles.text}>
+                  {searchData.location
+                    ? `رزرو هتل‌های ${searchData.location}`
+                    : "مکان مشخص نشده"}
+                </span>
               </div>
               <div className={styles.infoItem}>
                 <CalendarIcon className={styles.icon} />
-                <span className={styles.text}>{dateRange}</span>
+                <span className={styles.text}>{formatDateRange()}</span>
               </div>
               <div className={styles.infoItem}>
                 <UserIcon className={styles.icon} />
-                <span className={styles.text}>{guestInfo}</span>
+                <span className={styles.text}>{formatGuestInfo()}</span>
               </div>
             </div>
           </div>

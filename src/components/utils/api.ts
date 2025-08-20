@@ -37,7 +37,9 @@ api.interceptors.response.use(
   }
 ); //کاربر خودکار لاگ اوت بشه
 
-type HotelDetail = {};
+type HotelDetail = {
+  rooms(rooms: any): unknown;
+};
 
 export const getHotelRooms = (hotelId: number): Promise<HotelDetail> => {
   return api

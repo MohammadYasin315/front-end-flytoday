@@ -5,7 +5,7 @@ import AuthModal from "../UI/Modal/AuthModal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 import { removeTokens } from "../utils/auth";
-import { useAuth } from "@/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
-  const { phoneNumber, isAuthenticated } = useAuth()
+  const { phoneNumber, isAuthenticated } = useAuth();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -75,7 +75,6 @@ const Header = () => {
       <div className={styles.notificationArea}></div>
       <div className={styles.spacer} dir="rtl"></div>
       <div
-        id="back-to-top-anchor"
         className={clsx(
           styles.headerWrapper,
           !isVisible && styles.headerHidden
@@ -84,10 +83,7 @@ const Header = () => {
         <header className={styles.header}>
           <div className={styles.container}>
             <div className={styles.leftSection}>
-              <a
-                className={styles.logo}
-                href="/"
-              >
+              <a className={styles.logo} href="/">
                 <img
                   alt="logo"
                   fetchPriority="high"
@@ -210,10 +206,7 @@ const Header = () => {
                 ثبت اقامتگاه
               </button>
               <a target="_blank" href="/getapp">
-                <button
-                  className={styles.appButton}
-                  type="submit"
-                >
+                <button className={styles.appButton} type="submit">
                   <span className={styles.appIcon}></span>
                   <span className={styles.appText}>دریافت اَپ</span>
                 </button>

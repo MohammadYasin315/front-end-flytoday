@@ -1,0 +1,191 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.successCard {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.successHeader {
+    margin-bottom: 32px;
+}
+
+.successIcon {
+    width: 64px;
+    height: 64px;
+    color: #28a745;
+    margin: 0 auto 16px;
+}
+
+.successTitle {
+    color: #28a745;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.successMessage {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.voucherSection {
+    margin: 32px 0;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.voucherTitle {
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.voucherCard {
+    background: white;
+    border: 2px solid #007bff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.voucherHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.voucherLabel {
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+    margin-left: 12px;
+}
+
+.voucherCode {
+    color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.voucherDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detailRow span:first-child {
+    font-weight: bold;
+    color: #666;
+}
+
+.detailRow span:last-child {
+    color: #333;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin: 32px 0;
+    flex-wrap: wrap;
+}
+
+.downloadButton,
+.printButton,
+.emailButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.downloadButton {
+    background: #007bff;
+    color: white;
+}
+
+.printButton {
+    background: #28a745;
+    color: white;
+}
+
+.emailButton {
+    background: #6c757d;
+    color: white;
+}
+
+.downloadButton:hover {
+    background: #0056b3;
+}
+
+.printButton:hover {
+    background: #218838;
+}
+
+.emailButton:hover {
+    background: #545b62;
+}
+
+.buttonIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.instructions {
+    background: #e7f3ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: right;
+}
+
+.instructions h4 {
+    color: #0056b3;
+    margin-bottom: 12px;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.instructions li {
+    padding: 4px 0;
+    color: #333;
+    position: relative;
+    padding-right: 20px;
+}
+
+.instructions li:before {
+    content: "•";
+    color: #007bff;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+}

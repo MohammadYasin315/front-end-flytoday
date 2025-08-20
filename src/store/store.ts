@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
+import searchReducer from "./searchSlice";
 
 console.log("🔄 Initializing Redux store...");
 
@@ -13,6 +14,7 @@ const loggerMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    search: searchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

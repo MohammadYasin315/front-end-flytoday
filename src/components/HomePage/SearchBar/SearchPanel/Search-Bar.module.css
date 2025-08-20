@@ -168,8 +168,8 @@
 
 .searchButton:disabled {
     cursor: not-allowed;
-    background-color: #d3d3d3;
-    border-color: #d1d5db;
+    background-color: #b4b1b1;
+    border-color: #b4b1b1;
     color: #6b7280;
 }
 

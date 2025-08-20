@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import axios from "axios";
 import clsx from "clsx";
 import styles from "./Guest-Dropdown.module.css";
 
@@ -26,21 +25,6 @@ export default function GuestDropdown({
   const [loading, setLoading] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Fetch guest data from API
-  const fetchGuestData = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(apiEndpoint);
-      if (response.data) {
-        setRooms(response.data.rooms || [{ adults: 1, children: 0 }]);
-      }
-    } catch (error) {
-      console.warn("API not available, using default data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Function to get current guest data
   const getCurrentGuestData = useCallback(() => {
     const totalAdults = rooms.reduce((sum, room) => sum + room.adults, 0);
@@ -65,7 +49,6 @@ export default function GuestDropdown({
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      fetchGuestData();
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, onToggle]);

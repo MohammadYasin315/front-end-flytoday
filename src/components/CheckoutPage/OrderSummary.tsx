@@ -5,10 +5,15 @@ import styles from "./Order-Summary.module.css";
 import SessionExpiredModal from "./SessionExpiredModal";
 import { useCheckout } from "./contexts/CheckoutContext";
 import { toast, ToastContainer } from "react-toastify";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
+import { getAccessToken } from "../utils/auth";
+import AdditionalInfo from "./StepTwo/AdditionalInfo";
+import DiscountCodeForm from "./StepTwo/DiscountCodeForm";
+import HotelPolicyAgreement from "./StepTwo/HotelPolicyAgreement";
 
 interface OrderSummaryProps {
   initialTimeInMinutes?: number;
-  roomCount?: number;
   nightCount?: number;
   totalAmount?: number;
   loyaltyPoints?: number;
@@ -18,17 +23,37 @@ interface OrderSummaryProps {
 
 export default function OrderSummary({
   initialTimeInMinutes = 20,
-  roomCount = 1,
-  nightCount = 2,
-  totalAmount = 113000000,
-  loyaltyPoints = 112,
   onSessionExpire,
 }: OrderSummaryProps) {
-  const { goToNextStep, contactInfo, travelerInfo, currentStep } =
-    useCheckout();
+  const {
+    goToNextStep,
+    contactInfo,
+    travelerInfo,
+    currentStep,
+    hotelData,
+    roomId,
+    setReservationId,
+    reservationId,
+    discountCode,
+    additionalInfo,
+    acceptedTerms,
+    setPaymentData,
+    setVoucherCode,
+  } = useCheckout();
   const router = useRouter();
   const [timeLeft, setTimeLeft] = useState(initialTimeInMinutes * 60); // Convert to seconds
   const [isSessionExpired, setIsSessionExpired] = useState(false);
+
+  const { checkIn, checkOut, guests } = useSelector(
+    (state: RootState) => state.search
+  );
+
+  const nightCount = hotelData?.nights || 0;
+
+  const totalAmount =
+    (hotelData?.pricePerNight || 0) * (hotelData?.nights || 0);
+
+  const loyaltyPoints = hotelData?.loyaltyPoints || 0;
 
   // Calculate progress percentage (0-100)
   const totalSeconds = initialTimeInMinutes * 60;
@@ -74,9 +99,16 @@ export default function OrderSummary({
     router.push("/hotel");
   };
 
-  const handleConfirmAndContinue = (e: React.MouseEvent) => {
+  const handleConfirmAndContinue = async (e: React.MouseEvent) => {
     e.preventDefault();
-    // اعتبارسنجی اطلاعات تماس قبل از ادامه
+
+    console.log("شروع رزرو...");
+    console.log("roomId:", roomId);
+    console.log("checkIn:", checkIn);
+    console.log("checkOut:", checkOut);
+    console.log("travelerInfo:", travelerInfo);
+    console.log("contactInfo:", contactInfo);
+
     if (!contactInfo.email || !contactInfo.mobile) {
       toast.error("لطفا اطلاعات تماس را تکمیل کنید");
       return;
@@ -90,7 +122,160 @@ export default function OrderSummary({
       toast.error("لطفا اطلاعات مسافر را تکمیل کنید");
       return;
     }
-    goToNextStep();
+
+    if (!roomId) {
+      toast.error("اتاق انتخاب نشده است");
+      return;
+    }
+
+    const token = localStorage.getItem("accessToken");
+    console.log("Token:", token);
+    if (!token) {
+      toast.error("ابتدا وارد حساب کاربری شوید");
+      return;
+    }
+
+    const genderMapping: Record<string, string> = {
+      مرد: "M",
+      زن: "F",
+    };
+    const apiGender = genderMapping[travelerInfo.gender] || "";
+    console.log("جنسیت تبدیل شده:", apiGender);
+
+    try {
+      console.log("ارسال درخواست به API...");
+
+      const requestBody = {
+        room: roomId,
+        check_in: checkIn,
+        check_out: checkOut,
+        adults: guests,
+        first_name: travelerInfo.firstName,
+        last_name: travelerInfo.lastName,
+        nationality: "IR",
+        gender: apiGender,
+        passport_number: travelerInfo.nationalId,
+      };
+
+      console.log("Request Body:", JSON.stringify(requestBody, null, 2));
+
+      const response = await fetch("http://127.0.0.1:8000/reservations/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      console.log("وضعیت پاسخ:", response.status);
+      console.log("Headers:", Object.fromEntries(response.headers.entries()));
+
+      const responseText = await response.text();
+      console.log("متن پاسخ:", responseText);
+
+      if (!response.ok) {
+        let errorData;
+        try {
+          errorData = JSON.parse(responseText);
+        } catch {
+          errorData = {
+            message: "خطای نامشخص در سرور",
+            status: response.status,
+          };
+        }
+
+        console.error("جزئیات خطا:", errorData);
+
+        if (response.status === 400) {
+          throw new Error("اتاق در تاریخ انتخاب شده رزرو شده است");
+        } else {
+          throw new Error(errorData.message || `خطای سرور: ${response.status}`);
+        }
+      }
+
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        throw new Error("پاسخ سرور نامعتبر است");
+      }
+
+      console.log("پاسخ موفق:", data);
+      toast.success("رزرو با موفقیت انجام شد");
+
+      if (data.id) {
+        setReservationId(data.id);
+        console.log("Reservation ID saved:", data.id);
+      }
+
+      console.log("رفتن به مرحله بعد...");
+      goToNextStep();
+    } catch (error: any) {
+      console.error("Reservation Error Details:", error);
+      toast.error(error.message || "مشکلی در رزرو پیش آمد");
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!reservationId) {
+      toast.error("ابتدا رزرو را تکمیل کنید");
+      return;
+    }
+
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      toast.error("لطفا دوباره وارد شوید");
+      return;
+    }
+
+    try {
+      console.log("شروع پرداخت برای reservation:", reservationId);
+
+      const response = await fetch("http://127.0.0.1:8000/payments/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          reservation: reservationId,
+          discount_code: discountCode || null,
+          description:
+            additionalInfo || `پرداخت رزرو هتل ${hotelData?.hotelName}`,
+          accepted_terms: true,
+        }),
+      });
+
+      console.log("وضعیت پرداخت:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("خطای پرداخت:", errorText);
+
+        let errorMessage = "خطا در پرداخت";
+
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      console.log("Payment successful:", data);
+
+      // ذخیره داده‌های پرداخت و کد واچر از response
+      if (data.tracking_code) {
+        setVoucherCode(data.tracking_code);
+        console.log("Tracking code received:", data.tracking_code);
+      }
+
+      setPaymentData(data);
+
+      toast.success("پرداخت با موفقیت انجام شد");
+
+      goToNextStep();
+    } catch (error: any) {
+      console.error("Payment Error:", error);
+      toast.error(error.message || "مشکلی در پرداخت پیش آمد");
+    }
   };
 
   // Determine circle color based on time remaining
@@ -189,9 +374,7 @@ export default function OrderSummary({
           <h6 className={styles.cardTitle}>جزئیات خرید</h6>
           <div className={styles.detailsContent}>
             <div className={styles.detailRow}>
-              <div className={styles.detailLabel}>
-                {roomCount} اتاق × {nightCount} شب
-              </div>
+              <div className={styles.detailLabel}>{nightCount} شب</div>
               <div className={styles.detailPrice}>
                 <span className={styles.priceAmount}>
                   {formatPrice(totalAmount)}
@@ -213,10 +396,22 @@ export default function OrderSummary({
 
           <button
             type="button"
-            onClick={handleConfirmAndContinue}
+            onClick={() => {
+              if (currentStep === 2 && !acceptedTerms) {
+                toast.error("لطفا قوانین و مقررات را بپذیرید", {
+                });
+                return;
+              }
+
+              if (currentStep === 1) {
+                handleConfirmAndContinue();
+              } else {
+                handlePayment();
+              }
+            }}
             className={styles.confirmButton}
           >
-            {currentStep === 1 ? "تایید و ادامه" : "تایید و پرداخت"}
+            {currentStep === 1 ? "تایید و ادامه" : "تایید و پرداخت نهایی"}
           </button>
         </div>
 

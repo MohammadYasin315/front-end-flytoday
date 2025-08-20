@@ -6,6 +6,7 @@ import styles from "./Hotel-Image-Slider.module.css";
 import { HotelInfo } from "./HotelInfo";
 
 interface HotelImageSliderProps {
+  hotelId: string;
   images: { src: string; alt: string }[];
   isFeatured?: boolean;
   hotelName?: string;
@@ -21,6 +22,7 @@ interface HotelImageSliderProps {
 }
 
 export function HotelImageSlider({
+  hotelId,
   images,
   isFeatured = false,
   hotelName,
@@ -69,8 +71,8 @@ export function HotelImageSlider({
     setIsBookmarked((prev) => !prev);
   };
   return (
-    <a
-      target="_blank"
+    <div
+      // target="_blank"
       className={clsx(
         styles.mainContainer,
         styles.linkToDefault,
@@ -84,6 +86,7 @@ export function HotelImageSlider({
     >
       {/* Hotel Info Section - Left */}
       <HotelInfo
+        hotelId={hotelId}
         hotelName={hotelName}
         hotelType={hotelType}
         starRating={starRating}
@@ -124,12 +127,12 @@ export function HotelImageSlider({
             <div className={styles.imageContainer}>
               <div className={styles.imageWrapper}>
                 <Image
-                  alt={images[currentImageIndex].alt}
+                  alt={images?.[currentImageIndex]?.alt || "هتل"}
+                  src={images?.[currentImageIndex]?.src || "/placeholder.jpg"}
                   loading="eager"
                   decoding="async"
                   data-nimg="1"
                   className={styles.hotelImage}
-                  src={images[currentImageIndex].src}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}
@@ -177,7 +180,7 @@ export function HotelImageSlider({
           </div>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
 

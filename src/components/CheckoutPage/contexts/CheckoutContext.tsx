@@ -12,21 +12,10 @@ interface HotelData {
   checkOut: string;
   nights: number;
   hotelUrl: string;
+  pricePerNight: number;
+  loyaltyPoints: number;
+  roomId: number;
 }
-const hotelData: HotelData = {
-  hotelName: "هویزه تهران",
-  imageUrl:
-    "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/79/main.jpg?width=320",
-  imageAlt: "Howeyzeh Tehran Hotel",
-  rating: 2,
-  score: 6.7,
-  roomType: "اتاق دو تخته تویین",
-  hasBreakfast: true,
-  checkIn: "12 مرداد",
-  checkOut: "14 مرداد",
-  nights: 2,
-  hotelUrl: "/howeyzeh-tehran",
-};
 
 interface ContactInfo {
   email: string;
@@ -46,11 +35,26 @@ interface CheckoutContextType {
   currentStep: number;
   goToNextStep: () => void;
   goToPrevStep: () => void;
-  hotelData: HotelData;
+  hotelData: HotelData | null;
+  setHotelData: (data: HotelData) => void;
   contactInfo: ContactInfo;
   setContactInfo: (info: ContactInfo) => void;
   travelerInfo: TravelerInfo;
   setTravelerInfo: (info: TravelerInfo) => void;
+  roomId: number | null; 
+  setRoomId: (id: number) => void;
+  reservationId: number | null; 
+  setReservationId: (id: number) => void;
+  discountCode: string; 
+  setDiscountCode: (code: string) => void; 
+  additionalInfo: string; 
+  setAdditionalInfo: (info: string) => void; 
+  acceptedTerms: boolean; 
+  setAcceptedTerms: (accepted: boolean) => void;
+  voucherCode: string; 
+  setVoucherCode: (code: string) => void; 
+  paymentData: any; 
+  setPaymentData: (data: any) => void;
 }
 
 const CheckoutContext = createContext<CheckoutContextType | undefined>(
@@ -61,7 +65,8 @@ export const CheckoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
-
+  const [hotelData, setHotelData] = useState<HotelData | null>(null);
+  const [roomId, setRoomId] = useState<number | null>(null);
   const [contactInfo, setContactInfo] = useState<ContactInfo>({
     email: "",
     mobile: "",
@@ -77,7 +82,7 @@ export const CheckoutProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   const goToNextStep = useCallback(() => {
-    setCurrentStep((prev) => Math.min(prev + 1, 2));
+    setCurrentStep((prev) => Math.min(prev + 1,3));
   }, []);
 
   const goToPrevStep = useCallback(() => {
@@ -92,15 +97,67 @@ export const CheckoutProvider: React.FC<{ children: React.ReactNode }> = ({
     setTravelerInfo(info);
   }, []);
 
+  const handleSetRoomId = useCallback((id: number) => {
+    setRoomId(id);
+  }, []);
+
+  const [reservationId, setReservationId] = useState<number | null>(null);
+
+  const handleSetReservationId = useCallback((id: number) => {
+    setReservationId(id);
+  }, []);
+
+  const [discountCode, setDiscountCode] = useState<string>("");
+  const [additionalInfo, setAdditionalInfo] = useState<string>("");
+  const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
+
+  const handleSetDiscountCode = useCallback((code: string) => {
+    setDiscountCode(code);
+  }, []);
+
+  const handleSetAdditionalInfo = useCallback((info: string) => {
+    setAdditionalInfo(info);
+  }, []);
+
+  const handleSetAcceptedTerms = useCallback((accepted: boolean) => {
+    setAcceptedTerms(accepted);
+  }, []);
+
+  const [voucherCode, setVoucherCode] = useState<string>("");
+  const [paymentData, setPaymentData] = useState<any>(null);
+
+  const handleSetVoucherCode = useCallback((code: string) => {
+    setVoucherCode(code);
+  }, []);
+
+  const handleSetPaymentData = useCallback((data: any) => {
+    setPaymentData(data);
+  }, []);
+
   const value = {
     currentStep,
     goToNextStep,
     goToPrevStep,
     hotelData,
+    setHotelData,
     contactInfo,
     setContactInfo: handleSetContactInfo,
     travelerInfo,
     setTravelerInfo: handleSetTravelerInfo,
+    roomId,
+    setRoomId: handleSetRoomId,
+    reservationId,
+    setReservationId: handleSetReservationId,
+    discountCode,
+    setDiscountCode: handleSetDiscountCode,
+    additionalInfo,
+    setAdditionalInfo: handleSetAdditionalInfo,
+    acceptedTerms,
+    setAcceptedTerms: handleSetAcceptedTerms,
+    voucherCode,
+    setVoucherCode: handleSetVoucherCode,
+    paymentData,
+    setPaymentData: handleSetPaymentData,
   };
 
   return (

@@ -1,22 +1,21 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./Additional-Info.module.css";
+import { useCheckout } from "../contexts/CheckoutContext";
 
 export default function AdditionalInfo() {
-  const [description, setDescription] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const { additionalInfo, setAdditionalInfo } = useCheckout();
   const maxLength = 400;
-  const remainingChars = maxLength - description.length;
+  const remainingChars = maxLength - additionalInfo.length;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxLength) {
-      setDescription(e.target.value);
+      setAdditionalInfo(e.target.value);
     }
   };
 
-  const isActive = isFocused || description.length > 0;
+  const isActive = isFocused;
 
   return (
     <div className={styles.container}>
@@ -40,7 +39,7 @@ export default function AdditionalInfo() {
           </label>
           <textarea
             className={styles.textarea}
-            value={description}
+            value={additionalInfo}
             onChange={handleChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}

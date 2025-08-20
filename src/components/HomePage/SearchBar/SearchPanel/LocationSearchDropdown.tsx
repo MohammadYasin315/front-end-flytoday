@@ -1,5 +1,4 @@
 import type React from "react";
-
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import clsx from "clsx";
@@ -126,7 +125,6 @@ const popularCities: City[] = [
 export default function LocationSearchDropdown({
   onSelect,
   placeholder = "جستجوی شهر یا هتل",
-  apiEndpoint = "/api/cities",
   isOpen = false,
   onToggle,
 }: LocationSearchDropdownProps) {

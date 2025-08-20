@@ -22,19 +22,16 @@ export default function PasswordModal({
   loginInput,
   onLoginSuccess,
 }: PasswordModalProps) {
-  // Modal state
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [apiError, setApiError] = useState("");
 
-  // Password state
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Reset form when modal is closed
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
@@ -44,7 +41,6 @@ export default function PasswordModal({
         setApiError("");
       }, 300);
     } else {
-      // Auto focus input when modal opens
       setTimeout(() => {
         if (inputRef.current) {
           inputRef.current.focus();
@@ -53,7 +49,6 @@ export default function PasswordModal({
     }
   }, [isOpen]);
 
-  // Validate password
   useEffect(() => {
     if (!password.trim()) {
       setIsValid(false);
@@ -67,14 +62,12 @@ export default function PasswordModal({
     }
   }, [password]);
 
-  // Input change handler
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     if (!touched) setTouched(true);
     setApiError("");
   };
 
-  // Close modal when clicking outside
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       e.preventDefault();
@@ -83,7 +76,6 @@ export default function PasswordModal({
     }
   };
 
-  // Handle login button click
   const handleLogin = () => {
     if (isValid && !isLoading) {
       setIsLoading(true);
@@ -148,7 +140,6 @@ export default function PasswordModal({
       />
       <div className={styles.dialogModal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalContent}>
-          {/* Header with back and close buttons */}
           <div className={styles.modalHeader}>
             <button
               onClick={(e) => {

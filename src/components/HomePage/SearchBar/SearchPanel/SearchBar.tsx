@@ -11,6 +11,11 @@ import styles from "./Search-Bar.module.css";
 import LocationSearchDropdown from "./LocationSearchDropdown";
 import GuestDropdown from "./GuestDropdown";
 import DateRangePicker from "./DateRangePicker";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchData } from "@/store/searchSlice";
+import { useRouter } from "next/router";
+import { RootState } from "@/store/store";
+import axios from "axios";
 
 interface SearchBarProps {
   onSearch?: (data: SearchData) => void;
@@ -31,37 +36,71 @@ interface GuestData {
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
+  const searchData = useSelector((state: RootState) => state.search);
   const [isLoading, setIsLoading] = useState(false);
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
-  const [guestData, setGuestData] = useState<GuestData>({
-    adults: 1,
-    children: 0,
-    rooms: 1,
+  const [selectedLocation, setSelectedLocation] = useState(
+    searchData.location || ""
+  );
+  const [checkInDate, setCheckInDate] = useState<Date | null>(
+    searchData.checkIn ? new Date(searchData.checkIn) : null
+  );
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(
+    searchData.checkOut ? new Date(searchData.checkOut) : null
+  );
+  const [guestData, setGuestData] = useState({
+    adults: Math.max(1, searchData.guests - (searchData.children || 0)),
+    children: searchData.children || 0,
+    rooms: Math.max(1, searchData.rooms || 1),
   });
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
+
+  const isSearchValid = () => {
+    return (
+      selectedLocation.trim() !== "" &&
+      checkInDate !== null &&
+      checkOutDate !== null
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedCityId) return;
     setIsLoading(true);
 
     try {
-      const searchData: SearchData = {
-        location: selectedLocation,
-        checkIn: checkInDate ? checkInDate.toISOString().split("T")[0] : "",
-        checkOut: checkOutDate ? checkOutDate.toISOString().split("T")[0] : "",
-        guests: guestData.adults + guestData.children,
-        rooms: guestData.rooms,
-      };
+      const response = await axios.get("http://127.0.0.1:8000/hotels/", {
+        params: { city_id: selectedCityId },
+      });
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      onSearch?.(searchData);
+      const hotels = response.data;
+
+      dispatch(
+        setSearchData({
+          location: selectedLocation,
+          checkIn: checkInDate,
+          checkOut: checkOutDate,
+          guests: guestData.adults + guestData.children,
+          rooms: guestData.rooms,
+        })
+      );
+
+      if (onSearch) {
+        onSearch(hotels);
+      }
+
+      router.push({
+        pathname: "/cities",
+        query: { city_id: selectedCityId },
+      });
     } catch (error) {
-      console.error("Search error:", error);
+      console.error("خطا در گرفتن هتل‌ها:", error);
     } finally {
       setIsLoading(false);
     }
@@ -69,6 +108,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleLocationSelect = useCallback((city: any) => {
     setSelectedLocation(city.city_name);
+    setSelectedCityId(city.id);
     setIsLocationDropdownOpen(false);
   }, []);
 
@@ -119,10 +159,13 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     return `${totalGuests} مسافر، ${guestData.rooms} اتاق`;
   };
 
-  const formatDate = (date: Date | null) => {
-    if (!date) return "";
-    return date.toLocaleDateString("en-US");
-  };
+  function formatDate(date: Date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
 
   return (
     <div className={styles.container}>
@@ -265,7 +308,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
             <button
               type="submit"
               className={styles.searchButton}
-              disabled={isLoading}
+              disabled={isLoading || !isSearchValid()}
             >
               {isLoading ? (
                 <div className={styles.loadingDots}>
