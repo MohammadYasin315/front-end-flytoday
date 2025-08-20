@@ -77,7 +77,6 @@ export function HotelInfo({
 
   return (
     <div className={clsx(styles.container, className)}>
-      {/* Header Section - All in one line */}
       <div className={styles.header}>
         <div className={styles.titleRow}>
           <span className={clsx(styles.hotelName, "text-primaryBlack")}>
@@ -88,7 +87,6 @@ export function HotelInfo({
         </div>
       </div>
 
-      {/* Address Section */}
       <div className={styles.addressSection}>
         <div className={styles.addressContent}>
           <div className={styles.address}>{address}</div>
@@ -96,7 +94,6 @@ export function HotelInfo({
         </div>
       </div>
 
-      {/* Room Type */}
       <span className={styles.roomTypeSection}>
         <span className={styles.roomType}>
           {roomType}
@@ -106,9 +103,7 @@ export function HotelInfo({
         </span>
       </span>
 
-      {/* Main Content - RTL Layout */}
       <div className={styles.mainContent}>
-        {/* Right Section - Amenities and Rating */}
         <div className={styles.rightSection}>
           <div className={styles.amenitiesGrid}>
             {amenities.slice(0, 4).map((amenity, index) => (
@@ -134,7 +129,6 @@ export function HotelInfo({
           )}
         </div>
 
-        {/* Left Section - Price info and Button */}
         <div className={styles.leftSection}>
           <div className={styles.priceContainer}>
             <span className={styles.remainingRooms}>
